@@ -4,7 +4,7 @@ import {
   createEnv as createEnvCore,
   ServerClientOptions,
   type StrictOptions,
-} from "@t3-oss/env-core";
+} from "./core";
 
 const CLIENT_PREFIX = "NEXT_PUBLIC_" as const;
 type ClientPrefix = typeof CLIENT_PREFIX;

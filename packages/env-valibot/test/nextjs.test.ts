@@ -1,9 +1,8 @@
 /// <reference types="bun-types" />
 import { expect, test, describe } from "bun:test";
-
-import { createEnv } from "../src/index.js";
-import z from "zod";
+import { createEnv } from "../src/nextjs";
 import { expectTypeOf } from "expect-type";
+import z from "zod";
 
 function ignoreErrors(cb: () => void) {
   try {

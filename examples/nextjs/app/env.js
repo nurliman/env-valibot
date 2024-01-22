@@ -1,7 +1,7 @@
-import { createEnv } from "@t3-oss/env-nextjs";
+import { createNextjsEnv } from "@nurliman/env-valibot";
 import { z } from "zod";
 
-export const env = createEnv({
+export const env = createNextjsEnv({
   client: {
     NEXT_PUBLIC_GREETING: z.string(),
   },

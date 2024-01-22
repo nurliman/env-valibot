@@ -3,7 +3,7 @@ import {
   createEnv as createEnvCore,
   ServerClientOptions,
   StrictOptions,
-} from "@t3-oss/env-core";
+} from "./core";
 
 const CLIENT_PREFIX = "NUXT_PUBLIC_" as const;
 type ClientPrefix = typeof CLIENT_PREFIX;

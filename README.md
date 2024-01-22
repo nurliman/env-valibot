@@ -6,9 +6,9 @@ Deploying your app with invalid environment variables is a hassle. This package 
 
 ```bash
 # Core package, no framework specific features
-pnpm add @t3-oss/env-core zod
+pnpm add @nurliman/env-valibot zod
 # or, with options preconfigured for Next.js
-pnpm add @t3-oss/env-nextjs zod
+pnpm add @nurliman/env-valibot zod
 ```
 
 > Currently only supports Zod (which you'll need to install separately). Bring your own validation library is on the roadmap.
@@ -23,7 +23,7 @@ This package supports the full power of Zod, meaning you can use `transforms` an
 
 ```ts
 // src/env.mjs
-import { createEnv } from "@t3-oss/env-nextjs";
+import { createEnv } from "@nurliman/env-valibot/nextjs";
 import { z } from "zod";
 
 export const env = createEnv({

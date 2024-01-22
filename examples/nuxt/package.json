@@ -13,7 +13,7 @@
     "nuxt": "^3.4.2"
   },
   "dependencies": {
-    "@t3-oss/env-nuxt": "workspace:*",
+    "@nurliman/env-valibot": "workspace:*",
     "zod": "^3.20.2"
   }
 }

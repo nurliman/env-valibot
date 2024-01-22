@@ -1,0 +1,9 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "module": "ES2020",
+    "moduleResolution": "Bundler"
+  },
+  "include": ["src"]
+}

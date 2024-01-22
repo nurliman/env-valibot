@@ -1,6 +1,6 @@
 {
-  "name": "@t3-oss/env-root",
-  "packageManager": "bun@1.0.21",
+  "name": "@nurliman/env-valibot-root",
+  "packageManager": "pnpm@8.14.1",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -9,8 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo build --filter @t3-oss/env*",
-    "dev": "turbo dev --filter @t3-oss/env*",
+    "build": "turbo build --filter @nurliman/env*",
+    "dev": "turbo dev --filter @nurliman/env*",
     "lint": "turbo lint && manypkg check",
     "lint:fix": "turbo lint -- --fix && manypkg fix",
     "test": "turbo test",

@@ -1,4 +1,4 @@
-import { createEnv } from "@t3-oss/env-core";
+import { createEnv } from "@nurliman/env-valibot";
 import { z } from "zod";
 
 export const env = createEnv({

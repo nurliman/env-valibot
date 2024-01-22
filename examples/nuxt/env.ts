@@ -1,7 +1,7 @@
-import { createEnv } from "@t3-oss/env-nuxt";
+import { createNuxtEnv } from "@nurliman/env-valibot";
 import { z } from "zod";
 
-export const env = createEnv({
+export const env = createNuxtEnv({
   server: {
     SECRET: z.string(),
   },
