@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { expect, test, describe } from "vitest";
 import { expectTypeOf } from "expect-type";
 import { createEnv } from "../src/core";

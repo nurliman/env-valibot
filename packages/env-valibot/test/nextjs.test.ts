@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { expect, test, describe } from "vitest";
 import { createEnv } from "../src/nextjs";
 import { expectTypeOf } from "expect-type";
