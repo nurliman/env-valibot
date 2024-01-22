@@ -1,5 +1,5 @@
-/// <reference types="bun-types" />
-import { expect, test, describe } from "bun:test";
+/// <reference types="vitest" />
+import { expect, test, describe } from "vitest";
 import { expectTypeOf } from "expect-type";
 import { createEnv } from "../src/core";
 import z from "zod";

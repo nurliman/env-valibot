@@ -1,5 +1,5 @@
-/// <reference types="bun-types" />
-import { expect, test, describe } from "bun:test";
+/// <reference types="vitest" />
+import { expect, test, describe } from "vitest";
 import { createEnv } from "../src/nextjs";
 import { expectTypeOf } from "expect-type";
 import z from "zod";
