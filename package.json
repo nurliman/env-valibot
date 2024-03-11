@@ -9,14 +9,14 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo build --filter @nurliman/env*",
-    "dev": "turbo dev --filter @nurliman/env*",
+    "build": "turbo build --filter=./packages/*",
+    "dev": "turbo dev --filter=./packages/*",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply",
     "test": "turbo test",
     "typecheck": "turbo typecheck",
     "version-packages": "changeset version",
-    "release": "npm run build && npm run lint && npm run typecheck && npm run test && changeset publish"
+    "release": "npm run build && npm run lint:fix && npm run typecheck && npm run test --filter=./packages/* && changeset publish"
   },
   "dependencies": {
     "@biomejs/biome": "1.5.3",
