@@ -3,11 +3,7 @@
   "packageManager": "pnpm@8.15.4",
   "private": true,
   "type": "module",
-  "workspaces": [
-    "docs",
-    "examples/*",
-    "packages/*"
-  ],
+  "workspaces": ["docs", "examples/*", "packages/*"],
   "scripts": {
     "build": "turbo build --filter @nurliman/env*",
     "dev": "turbo dev --filter @nurliman/env*",
