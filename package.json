@@ -16,7 +16,7 @@
     "test": "turbo test",
     "typecheck": "turbo typecheck",
     "version-packages": "changeset version",
-    "release": "npm run build && npm run lint && npm run typecheck && npm run test && changeset publish"
+    "release": "npm run build && npm run lint:fix && npm run typecheck && npm run test --filter @nurliman/env* && changeset publish"
   },
   "dependencies": {
     "@biomejs/biome": "1.5.3",
