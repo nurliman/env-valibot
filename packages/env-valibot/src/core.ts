@@ -1,17 +1,32 @@
-import { z, type ZodError, type ZodObject, type ZodType } from "zod";
+import { type ZodError, type ZodObject, type ZodType, z } from "zod";
 
 export type ErrorMessage<T extends string> = T;
 export type Simplify<T> = {
   [P in keyof T]: T[P];
-  // eslint-disable-next-line @typescript-eslint/ban-types
 } & {};
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type Impossible<T extends Record<string, any>> = Partial<
   Record<keyof T, never>
 >;
 
-export interface BaseOptions<TShared extends Record<string, ZodType>> {
+type UnReadonlyObject<T> = T extends Readonly<infer U> ? U : T;
+
+type Reduce<
+  TArr extends Array<Record<string, unknown>>,
+  TAcc = {},
+> = TArr extends []
+  ? TAcc
+  : TArr extends [infer Head, ...infer Tail]
+    ? Tail extends Array<Record<string, unknown>>
+      ? Head & Reduce<Tail, TAcc>
+      : never
+    : never;
+
+export interface BaseOptions<
+  TShared extends Record<string, ZodType>,
+  TExtends extends Array<Record<string, unknown>>,
+> {
   /**
    * How to determine whether the app is running on the server or the client.
    * @default typeof window === "undefined"
@@ -23,6 +38,11 @@ export interface BaseOptions<TShared extends Record<string, ZodType>> {
    * but isn't prefixed and doesn't require to be manually supplied. For example `NODE_ENV`, `VERCEL_URL` etc.
    */
   shared?: TShared;
+
+  /**
+   * Extend presets
+   */
+  extends?: TExtends;
 
   /**
    * Called when validation fails. By default the error is logged,
@@ -58,8 +78,10 @@ export interface BaseOptions<TShared extends Record<string, ZodType>> {
   emptyStringAsUndefined?: boolean;
 }
 
-export interface LooseOptions<TShared extends Record<string, ZodType>>
-  extends BaseOptions<TShared> {
+export interface LooseOptions<
+  TShared extends Record<string, ZodType>,
+  TExtends extends Array<Record<string, unknown>>,
+> extends BaseOptions<TShared, TExtends> {
   runtimeEnvStrict?: never;
 
   /**
@@ -74,8 +96,9 @@ export interface StrictOptions<
   TPrefix extends string | undefined,
   TServer extends Record<string, ZodType>,
   TClient extends Record<string, ZodType>,
-  TShared extends Record<string, ZodType>
-> extends BaseOptions<TShared> {
+  TShared extends Record<string, ZodType>,
+  TExtends extends Array<Record<string, unknown>>,
+> extends BaseOptions<TShared, TExtends> {
   /**
    * Runtime Environment variables to use for validation - `process.env`, `import.meta.env` or similar.
    * Enforces all environment variables to be set. Required in for example Next.js Edge and Client runtimes.
@@ -85,15 +108,15 @@ export interface StrictOptions<
         [TKey in keyof TClient]: TPrefix extends undefined
           ? never
           : TKey extends `${TPrefix}${string}`
-          ? TKey
-          : never;
+            ? TKey
+            : never;
       }[keyof TClient]
     | {
         [TKey in keyof TServer]: TPrefix extends undefined
           ? TKey
           : TKey extends `${TPrefix}${string}`
-          ? never
-          : TKey;
+            ? never
+            : TKey;
       }[keyof TServer]
     | {
         [TKey in keyof TShared]: TKey extends string ? TKey : never;
@@ -105,7 +128,7 @@ export interface StrictOptions<
 
 export interface ClientOptions<
   TPrefix extends string | undefined,
-  TClient extends Record<string, ZodType>
+  TClient extends Record<string, ZodType>,
 > {
   /**
    * The prefix that client-side variables must have. This is enforced both at
@@ -128,7 +151,7 @@ export interface ClientOptions<
 
 export interface ServerOptions<
   TPrefix extends string | undefined,
-  TServer extends Record<string, ZodType>
+  TServer extends Record<string, ZodType>,
 > {
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app isn't
@@ -138,19 +161,19 @@ export interface ServerOptions<
     [TKey in keyof TServer]: TPrefix extends undefined
       ? TServer[TKey]
       : TPrefix extends ""
-      ? TServer[TKey]
-      : TKey extends `${TPrefix}${string}`
-      ? ErrorMessage<`${TKey extends `${TPrefix}${string}`
-          ? TKey
-          : never} should not prefixed with ${TPrefix}.`>
-      : TServer[TKey];
+        ? TServer[TKey]
+        : TKey extends `${TPrefix}${string}`
+          ? ErrorMessage<`${TKey extends `${TPrefix}${string}`
+              ? TKey
+              : never} should not prefixed with ${TPrefix}.`>
+          : TServer[TKey];
   }>;
 }
 
 export type ServerClientOptions<
   TPrefix extends string | undefined,
   TServer extends Record<string, ZodType>,
-  TClient extends Record<string, ZodType>
+  TClient extends Record<string, ZodType>,
 > =
   | (ClientOptions<TPrefix, TClient> & ServerOptions<TPrefix, TServer>)
   | (ServerOptions<TPrefix, TServer> & Impossible<ClientOptions<never, never>>)
@@ -160,24 +183,28 @@ export type EnvOptions<
   TPrefix extends string | undefined,
   TServer extends Record<string, ZodType>,
   TClient extends Record<string, ZodType>,
-  TShared extends Record<string, ZodType>
+  TShared extends Record<string, ZodType>,
+  TExtends extends Array<Record<string, unknown>>,
 > =
-  | (LooseOptions<TShared> & ServerClientOptions<TPrefix, TServer, TClient>)
-  | (StrictOptions<TPrefix, TServer, TClient, TShared> &
+  | (LooseOptions<TShared, TExtends> &
+      ServerClientOptions<TPrefix, TServer, TClient>)
+  | (StrictOptions<TPrefix, TServer, TClient, TShared, TExtends> &
       ServerClientOptions<TPrefix, TServer, TClient>);
 
 export function createEnv<
   TPrefix extends string | undefined,
   TServer extends Record<string, ZodType> = NonNullable<unknown>,
   TClient extends Record<string, ZodType> = NonNullable<unknown>,
-  TShared extends Record<string, ZodType> = NonNullable<unknown>
+  TShared extends Record<string, ZodType> = NonNullable<unknown>,
+  const TExtends extends Array<Record<string, unknown>> = [],
 >(
-  opts: EnvOptions<TPrefix, TServer, TClient, TShared>
+  opts: EnvOptions<TPrefix, TServer, TClient, TShared, TExtends>,
 ): Readonly<
   Simplify<
     z.infer<ZodObject<TServer>> &
       z.infer<ZodObject<TClient>> &
-      z.infer<ZodObject<TShared>>
+      z.infer<ZodObject<TShared>> &
+      UnReadonlyObject<Reduce<TExtends>>
   >
 > {
   const runtimeEnv = opts.runtimeEnvStrict ?? opts.runtimeEnv ?? process.env;
@@ -192,7 +219,7 @@ export function createEnv<
   }
 
   const skip = !!opts.skipValidation;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   if (skip) return runtimeEnv as any;
 
   const _client = typeof opts.client === "object" ? opts.client : {};
@@ -214,7 +241,7 @@ export function createEnv<
     ((error: ZodError) => {
       console.error(
         "❌ Invalid environment variables:",
-        error.flatten().fieldErrors
+        error.flatten().fieldErrors,
       );
       throw new Error("Invalid environment variables");
     });
@@ -223,7 +250,7 @@ export function createEnv<
     opts.onInvalidAccess ??
     ((_variable: string) => {
       throw new Error(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
     });
 
@@ -231,23 +258,28 @@ export function createEnv<
     return onValidationError(parsed.error);
   }
 
-  const env = new Proxy(parsed.data, {
+  const isServerAccess = (prop: string) => {
+    if (!opts.clientPrefix) return true;
+    return !prop.startsWith(opts.clientPrefix) && !(prop in shared.shape);
+  };
+  const isValidServerAccess = (prop: string) => {
+    return isServer || !isServerAccess(prop);
+  };
+  const ignoreProp = (prop: string) => {
+    return prop === "__esModule" || prop === "$$typeof";
+  };
+
+  const extendedObj = (opts.extends ?? []).reduce((acc, curr) => {
+    return Object.assign(acc, curr);
+  }, {});
+  const fullObj = Object.assign(parsed.data, extendedObj);
+
+  const env = new Proxy(fullObj, {
     get(target, prop) {
-      if (
-        typeof prop !== "string" ||
-        prop === "__esModule" ||
-        prop === "$$typeof"
-      )
-        return undefined;
-      if (
-        !isServer &&
-        opts.clientPrefix &&
-        !prop.startsWith(opts.clientPrefix) &&
-        shared.shape[prop as keyof typeof shared.shape] === undefined
-      ) {
-        return onInvalidAccess(prop);
-      }
-      return target[prop as keyof typeof target];
+      if (typeof prop !== "string") return undefined;
+      if (ignoreProp(prop)) return undefined;
+      if (!isValidServerAccess(prop)) return onInvalidAccess(prop);
+      return Reflect.get(target, prop);
     },
     // Maybe reconsider this in the future:
     // https://github.com/t3-oss/t3-env/pull/111#issuecomment-1682931526
@@ -261,6 +293,6 @@ export function createEnv<
     // },
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   return env as any;
 }

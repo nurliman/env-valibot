@@ -1,4 +1,4 @@
-import { createNextjsEnv } from "@nurliman/env-valibot";
+import { createNextjsEnv, presetVercel } from "@nurliman/env-valibot";
 import { z } from "zod";
 
 export const env = createNextjsEnv({
@@ -15,4 +15,5 @@ export const env = createNextjsEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_GREETING: process.env.NEXT_PUBLIC_GREETING,
   },
+  extends: [presetVercel],
 });

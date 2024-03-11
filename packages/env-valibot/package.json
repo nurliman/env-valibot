@@ -40,6 +40,11 @@
       "types": "./dist/nuxt.d.ts",
       "import": "./dist/nuxt.js",
       "require": "./dist/nuxt.cjs"
+    },
+    "./presets": {
+      "types": "./dist/presets.d.ts",
+      "import": "./dist/presets.js",
+      "require": "./dist/presets.cjs"
     }
   },
   "files": [
