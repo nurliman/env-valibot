@@ -1,5 +1,17 @@
 # @nurliman/env-valibot
 
+## 0.1.1
+
+### Patch Changes
+
+- [`c1aed2c`](https://github.com/nurliman/env-valibot/commit/c1aed2c9d7df62ac4eb14f309589646c7d91daca) Thanks [@nurliman](https://github.com/nurliman)! - update dependencies
+
+- [`329c644`](https://github.com/nurliman/env-valibot/commit/329c644a56660b353268ca5e9ab962c58a061985) Thanks [@nurliman](https://github.com/nurliman)! - format package.json
+
+- [`a820d6d`](https://github.com/nurliman/env-valibot/commit/a820d6dd278c1ddc94bd0c39d9d90eee3342e6a0) Thanks [@nurliman](https://github.com/nurliman)! - Update biome.json schema version
+
+- [`77f973e`](https://github.com/nurliman/env-valibot/commit/77f973e586a207a482ec43d250299355a05348df) Thanks [@nurliman](https://github.com/nurliman)! - Update test command in release script
+
 ## 0.1.0
 
 ### Minor Changes
