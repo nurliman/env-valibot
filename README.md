@@ -6,34 +6,34 @@ Deploying your app with invalid environment variables is a hassle. This package 
 
 ```bash
 # Core package, no framework specific features
-pnpm add @nurliman/env-valibot zod
+pnpm add @nurliman/env-valibot valibot
 # or, with options preconfigured for Next.js
-pnpm add @nurliman/env-valibot zod
+pnpm add @nurliman/env-valibot valibot
 ```
 
-> Currently only supports Zod (which you'll need to install separately). Bring your own validation library is on the roadmap.
+> Currently only supports Valibot (which you'll need to install separately). Bring your own validation library is on the roadmap.
 
 ## Usage
 
 > For full documentation, see https://env.t3.gg
 
-This package supports the full power of Zod, meaning you can use `transforms` and `default` values.
+This package supports the full power of Valibot, meaning you can use `transforms` and `default` values.
 
 ### Define your schema
 
 ```ts
 // src/env.mjs
-import { createEnv } from "@nurliman/env-valibot/nextjs";
-import { z } from "zod";
+import { createNextjsEnv } from "@nurliman/env-valibot";
+import * as v from 'valibot';
 
-export const env = createEnv({
+export const env = createNextjsEnv({
   /*
    * Serverside Environment variables, not available on the client.
    * Will throw if you access these variables on the client.
    */
   server: {
-    DATABASE_URL: z.string().url(),
-    OPEN_AI_API_KEY: z.string().min(1),
+    DATABASE_URL: v.string([v.url()]),
+    OPEN_AI_API_KEY: v.string([v.minLength(1)]),
   },
   /*
    * Environment variables available on the client (and server).
@@ -41,7 +41,7 @@ export const env = createEnv({
    * 💡 You'll get type errors if these are not prefixed with NEXT_PUBLIC_.
    */
   client: {
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: v.string([v.minLength(1)]),
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -72,4 +72,4 @@ export const GET = (req: Request) => {
 
 ## Roadmap
 
-- [ ] Bring your own validation library - currently only supports Zod.
+- [ ] Bring your own validation library - currently only supports Valibot.

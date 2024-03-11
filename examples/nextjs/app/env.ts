@@ -1,15 +1,15 @@
 import { createNextjsEnv, presetVercel } from "@nurliman/env-valibot";
-import { z } from "zod";
+import { picklist as vPicklist, string as vString } from "valibot";
 
 export const env = createNextjsEnv({
   client: {
-    NEXT_PUBLIC_GREETING: z.string(),
+    NEXT_PUBLIC_GREETING: vString(),
   },
   server: {
-    SECRET: z.string(),
+    SECRET: vString(),
   },
   shared: {
-    NODE_ENV: z.enum(["development", "production"]),
+    NODE_ENV: vPicklist(["development", "production"]),
   },
   experimental__runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,

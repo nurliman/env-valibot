@@ -1,11 +1,11 @@
 import { createNuxtEnv } from "@nurliman/env-valibot";
-import { z } from "zod";
+import { string as vString } from "valibot";
 
 export const env = createNuxtEnv({
   server: {
-    SECRET: z.string(),
+    SECRET: vString(),
   },
   client: {
-    NUXT_PUBLIC_GREETING: z.string(),
+    NUXT_PUBLIC_GREETING: vString(),
   },
 });

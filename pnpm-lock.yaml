@@ -54,9 +54,9 @@ importers:
       solid-js:
         specifier: ^1.4.3
         version: 1.8.11
-      zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+      valibot:
+        specifier: ^0.30.0
+        version: 0.30.0
     devDependencies:
       vite:
         specifier: ^4.3.1
@@ -76,9 +76,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+      valibot:
+        specifier: ^0.30.0
+        version: 0.30.0
     devDependencies:
       '@types/node':
         specifier: ^18.15.13
@@ -101,9 +101,9 @@ importers:
       '@nurliman/env-valibot':
         specifier: workspace:*
         version: link:../../packages/env-valibot
-      zod:
-        specifier: ^3.20.2
-        version: 3.22.4
+      valibot:
+        specifier: ^0.30.0
+        version: 0.30.0
     devDependencies:
       '@types/node':
         specifier: ^18.15.13
@@ -126,12 +126,12 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
+      valibot:
+        specifier: ^0.30.0
+        version: 0.30.0
       vitest:
         specifier: ^1.2.1
         version: 1.2.1(@types/node@18.19.8)
-      zod:
-        specifier: ^3.0.0
-        version: 3.22.4
 
 packages:
 
@@ -8537,6 +8537,7 @@ packages:
 
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+    requiresBuild: true
 
   /sass-formatter@0.7.8:
     resolution: {integrity: sha512-7fI2a8THglflhhYis7k06eUf92VQuJoXzEs2KRP0r1bluFxKFvLx0Ns7c478oYGM0fPfrr846ZRWVi2MAgHt9Q==}
@@ -9881,6 +9882,9 @@ packages:
       sade: 1.8.1
     dev: false
 
+  /valibot@0.30.0:
+    resolution: {integrity: sha512-5POBdbSkM+3nvJ6ZlyQHsggisfRtyT4tVTo1EIIShs6qCdXJnyWU5TJ68vr8iTg5zpOLjXLRiBqNx+9zwZz/rA==}
+
   /validate-html-nesting@1.2.2:
     resolution: {integrity: sha512-hGdgQozCsQJMyfK5urgFcWEqsSSrK63Awe0t/IMR0bZ0QMtnuaiHzThW81guu3qx9abLi99NEuiaN6P9gVYsNg==}
     dev: false
@@ -10586,6 +10590,7 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

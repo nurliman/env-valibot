@@ -14,7 +14,7 @@
     "@nurliman/env-valibot": "workspace:*",
     "astro": "^2.3.0",
     "solid-js": "^1.4.3",
-    "zod": "^3.20.2"
+    "valibot": "^0.30.0"
   },
   "devDependencies": {
     "vite": "^4.3.1"

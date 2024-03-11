@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "@nurliman/env-valibot": "workspace:*",
-    "zod": "^3.20.2"
+    "valibot": "^0.30.0"
   }
 }

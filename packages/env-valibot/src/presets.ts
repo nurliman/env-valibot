@@ -1,4 +1,8 @@
-import { z } from "zod";
+import {
+  optional as vOptional,
+  picklist as vPicklist,
+  string as vString,
+} from "valibot";
 import { createEnv } from "./core";
 
 /**
@@ -7,23 +11,23 @@ import { createEnv } from "./core";
  */
 export const vercel = createEnv({
   server: {
-    VERCEL: z.string().optional(),
-    VERCEL_ENV: z.enum(["development", "preview", "production"]).optional(),
-    VERCEL_URL: z.string().optional(),
-    VERCEL_BRANCH_URL: z.string().optional(),
-    VERCEL_REGION: z.string().optional(),
-    VERCEL_AUTOMATION_BYPASS_SECRET: z.string().optional(),
-    VERCEL_GIT_PROVIDER: z.string().optional(),
-    VERCEL_GIT_REPO_SLUG: z.string().optional(),
-    VERCEL_GIT_REPO_OWNER: z.string().optional(),
-    VERCEL_GIT_REPO_ID: z.string().optional(),
-    VERCEL_GIT_COMMIT_REF: z.string().optional(),
-    VERCEL_GIT_COMMIT_SHA: z.string().optional(),
-    VERCEL_GIT_COMMIT_MESSAGE: z.string().optional(),
-    VERCEL_GIT_COMMIT_AUTHOR_LOGIN: z.string().optional(),
-    VERCEL_GIT_COMMIT_AUTHOR_NAME: z.string().optional(),
-    VERCEL_GIT_PREVIOUS_SHA: z.string().optional(),
-    VERCEL_GIT_PULL_REQUEST_ID: z.string().optional(),
+    VERCEL: vOptional(vString()),
+    VERCEL_ENV: vOptional(vPicklist(["development", "preview", "production"])),
+    VERCEL_URL: vOptional(vString()),
+    VERCEL_BRANCH_URL: vOptional(vString()),
+    VERCEL_REGION: vOptional(vString()),
+    VERCEL_AUTOMATION_BYPASS_SECRET: vOptional(vString()),
+    VERCEL_GIT_PROVIDER: vOptional(vString()),
+    VERCEL_GIT_REPO_SLUG: vOptional(vString()),
+    VERCEL_GIT_REPO_OWNER: vOptional(vString()),
+    VERCEL_GIT_REPO_ID: vOptional(vString()),
+    VERCEL_GIT_COMMIT_REF: vOptional(vString()),
+    VERCEL_GIT_COMMIT_SHA: vOptional(vString()),
+    VERCEL_GIT_COMMIT_MESSAGE: vOptional(vString()),
+    VERCEL_GIT_COMMIT_AUTHOR_LOGIN: vOptional(vString()),
+    VERCEL_GIT_COMMIT_AUTHOR_NAME: vOptional(vString()),
+    VERCEL_GIT_PREVIOUS_SHA: vOptional(vString()),
+    VERCEL_GIT_PULL_REQUEST_ID: vOptional(vString()),
   },
   runtimeEnv: process.env,
 });

@@ -1,4 +1,11 @@
-import { type ZodError, type ZodObject, type ZodType, z } from "zod";
+import type { ObjectSchema, Output, SchemaIssues } from "valibot";
+import {
+  flatten as vFlatten,
+  merge as vMerge,
+  object as vObject,
+  safeParse as vSafeParse,
+} from "valibot";
+import type { AnySchema } from "./utils";
 
 export type ErrorMessage<T extends string> = T;
 export type Simplify<T> = {
@@ -24,7 +31,7 @@ type Reduce<
     : never;
 
 export interface BaseOptions<
-  TShared extends Record<string, ZodType>,
+  TShared extends Record<string, AnySchema>,
   TExtends extends Array<Record<string, unknown>>,
 > {
   /**
@@ -48,7 +55,7 @@ export interface BaseOptions<
    * Called when validation fails. By default the error is logged,
    * and an error is thrown telling what environment variables are invalid.
    */
-  onValidationError?: (error: ZodError) => never;
+  onValidationError?: (error: SchemaIssues) => never;
 
   /**
    * Called when a server-side environment variable is accessed on the client.
@@ -64,10 +71,10 @@ export interface BaseOptions<
 
   /**
    * By default, this library will feed the environment variables directly to
-   * the Zod validator.
+   * the Valibot validator.
    *
    * This means that if you have an empty string for a value that is supposed
-   * to be a number (e.g. `PORT=` in a ".env" file), Zod will incorrectly flag
+   * to be a number (e.g. `PORT=` in a ".env" file), Valibot will incorrectly flag
    * it as a type mismatch violation. Additionally, if you have an empty string
    * for a value that is supposed to be a string with a default value (e.g.
    * `DOMAIN=` in an ".env" file), the default value will never be applied.
@@ -79,7 +86,7 @@ export interface BaseOptions<
 }
 
 export interface LooseOptions<
-  TShared extends Record<string, ZodType>,
+  TShared extends Record<string, AnySchema>,
   TExtends extends Array<Record<string, unknown>>,
 > extends BaseOptions<TShared, TExtends> {
   runtimeEnvStrict?: never;
@@ -94,9 +101,9 @@ export interface LooseOptions<
 
 export interface StrictOptions<
   TPrefix extends string | undefined,
-  TServer extends Record<string, ZodType>,
-  TClient extends Record<string, ZodType>,
-  TShared extends Record<string, ZodType>,
+  TServer extends Record<string, AnySchema>,
+  TClient extends Record<string, AnySchema>,
+  TShared extends Record<string, AnySchema>,
   TExtends extends Array<Record<string, unknown>>,
 > extends BaseOptions<TShared, TExtends> {
   /**
@@ -128,7 +135,7 @@ export interface StrictOptions<
 
 export interface ClientOptions<
   TPrefix extends string | undefined,
-  TClient extends Record<string, ZodType>,
+  TClient extends Record<string, AnySchema>,
 > {
   /**
    * The prefix that client-side variables must have. This is enforced both at
@@ -151,7 +158,7 @@ export interface ClientOptions<
 
 export interface ServerOptions<
   TPrefix extends string | undefined,
-  TServer extends Record<string, ZodType>,
+  TServer extends Record<string, AnySchema>,
 > {
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app isn't
@@ -172,8 +179,8 @@ export interface ServerOptions<
 
 export type ServerClientOptions<
   TPrefix extends string | undefined,
-  TServer extends Record<string, ZodType>,
-  TClient extends Record<string, ZodType>,
+  TServer extends Record<string, AnySchema>,
+  TClient extends Record<string, AnySchema>,
 > =
   | (ClientOptions<TPrefix, TClient> & ServerOptions<TPrefix, TServer>)
   | (ServerOptions<TPrefix, TServer> & Impossible<ClientOptions<never, never>>)
@@ -181,9 +188,9 @@ export type ServerClientOptions<
 
 export type EnvOptions<
   TPrefix extends string | undefined,
-  TServer extends Record<string, ZodType>,
-  TClient extends Record<string, ZodType>,
-  TShared extends Record<string, ZodType>,
+  TServer extends Record<string, AnySchema>,
+  TClient extends Record<string, AnySchema>,
+  TShared extends Record<string, AnySchema>,
   TExtends extends Array<Record<string, unknown>>,
 > =
   | (LooseOptions<TShared, TExtends> &
@@ -193,17 +200,17 @@ export type EnvOptions<
 
 export function createEnv<
   TPrefix extends string | undefined,
-  TServer extends Record<string, ZodType> = NonNullable<unknown>,
-  TClient extends Record<string, ZodType> = NonNullable<unknown>,
-  TShared extends Record<string, ZodType> = NonNullable<unknown>,
+  TServer extends Record<string, AnySchema> = NonNullable<unknown>,
+  TClient extends Record<string, AnySchema> = NonNullable<unknown>,
+  TShared extends Record<string, AnySchema> = NonNullable<unknown>,
   const TExtends extends Array<Record<string, unknown>> = [],
 >(
   opts: EnvOptions<TPrefix, TServer, TClient, TShared, TExtends>,
 ): Readonly<
   Simplify<
-    z.infer<ZodObject<TServer>> &
-      z.infer<ZodObject<TClient>> &
-      z.infer<ZodObject<TShared>> &
+    Output<ObjectSchema<TServer>> &
+      Output<ObjectSchema<TClient>> &
+      Output<ObjectSchema<TShared>> &
       UnReadonlyObject<Reduce<TExtends>>
   >
 > {
@@ -225,23 +232,23 @@ export function createEnv<
   const _client = typeof opts.client === "object" ? opts.client : {};
   const _server = typeof opts.server === "object" ? opts.server : {};
   const _shared = typeof opts.shared === "object" ? opts.shared : {};
-  const client = z.object(_client);
-  const server = z.object(_server);
-  const shared = z.object(_shared);
+  const client = vObject(_client);
+  const server = vObject(_server);
+  const shared = vObject(_shared);
   const isServer = opts.isServer ?? typeof window === "undefined";
 
-  const allClient = client.merge(shared);
-  const allServer = server.merge(shared).merge(client);
+  const allClient = vMerge([client, shared]);
+  const allServer = vMerge([server, shared, client]);
   const parsed = isServer
-    ? allServer.safeParse(runtimeEnv) // on server we can validate all env vars
-    : allClient.safeParse(runtimeEnv); // on client we can only validate the ones that are exposed
+    ? vSafeParse(allServer, runtimeEnv) // on server we can validate all env vars
+    : vSafeParse(allClient, runtimeEnv); // on client we can only validate the ones that are exposed
 
   const onValidationError =
     opts.onValidationError ??
-    ((error: ZodError) => {
+    ((error: SchemaIssues) => {
       console.error(
         "❌ Invalid environment variables:",
-        error.flatten().fieldErrors,
+        vFlatten(error).nested,
       );
       throw new Error("Invalid environment variables");
     });
@@ -255,12 +262,12 @@ export function createEnv<
     });
 
   if (parsed.success === false) {
-    return onValidationError(parsed.error);
+    return onValidationError(parsed.issues);
   }
 
   const isServerAccess = (prop: string) => {
     if (!opts.clientPrefix) return true;
-    return !prop.startsWith(opts.clientPrefix) && !(prop in shared.shape);
+    return !prop.startsWith(opts.clientPrefix) && !(prop in shared.entries);
   };
   const isValidServerAccess = (prop: string) => {
     return isServer || !isServerAccess(prop);
@@ -272,7 +279,7 @@ export function createEnv<
   const extendedObj = (opts.extends ?? []).reduce((acc, curr) => {
     return Object.assign(acc, curr);
   }, {});
-  const fullObj = Object.assign(parsed.data, extendedObj);
+  const fullObj = Object.assign(parsed.output, extendedObj);
 
   const env = new Proxy(fullObj, {
     get(target, prop) {

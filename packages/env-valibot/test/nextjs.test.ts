@@ -1,6 +1,10 @@
 import { expectTypeOf } from "expect-type";
+import {
+  picklist as vPicklist,
+  string as vString,
+  transform as vTransform,
+} from "valibot";
 import { describe, expect, test, vi } from "vitest";
-import z from "zod";
 import { createEnv } from "../src/nextjs";
 
 function ignoreErrors(cb: () => void) {
@@ -16,8 +20,8 @@ test("server vars should not be prefixed", () => {
     createEnv({
       server: {
         // @ts-expect-error - server should not have NEXT_PUBLIC_ prefix
-        NEXT_PUBLIC_BAR: z.string(),
-        BAR: z.string(),
+        NEXT_PUBLIC_BAR: vString(),
+        BAR: vString(),
       },
       client: {},
       runtimeEnv: {
@@ -32,9 +36,9 @@ test("client vars should be correctly prefixed", () => {
     createEnv({
       server: {},
       client: {
-        NEXT_PUBLIC_BAR: z.string(),
+        NEXT_PUBLIC_BAR: vString(),
         // @ts-expect-error - no NEXT_PUBLIC_ prefix
-        BAR: z.string(),
+        BAR: vString(),
       },
       runtimeEnv: {
         NEXT_PUBLIC_BAR: "foo",
@@ -46,19 +50,19 @@ test("client vars should be correctly prefixed", () => {
 test("runtimeEnv enforces all keys", () => {
   createEnv({
     server: {},
-    client: { NEXT_PUBLIC_BAR: z.string() },
+    client: { NEXT_PUBLIC_BAR: vString() },
     runtimeEnv: { NEXT_PUBLIC_BAR: "foo" },
   });
 
   createEnv({
-    server: { BAR: z.string() },
-    client: { NEXT_PUBLIC_BAR: z.string() },
+    server: { BAR: vString() },
+    client: { NEXT_PUBLIC_BAR: vString() },
     runtimeEnv: { BAR: "foo", NEXT_PUBLIC_BAR: "foo" },
   });
 
   createEnv({
     server: {},
-    client: { NEXT_PUBLIC_BAR: z.string() },
+    client: { NEXT_PUBLIC_BAR: vString() },
     runtimeEnv: {
       NEXT_PUBLIC_BAR: "foo",
       // @ts-expect-error - FOO_BAZ is extraneous
@@ -68,8 +72,8 @@ test("runtimeEnv enforces all keys", () => {
 
   ignoreErrors(() => {
     createEnv({
-      server: { BAR: z.string() },
-      client: { NEXT_PUBLIC_BAR: z.string() },
+      server: { BAR: vString() },
+      client: { NEXT_PUBLIC_BAR: vString() },
       // @ts-expect-error - BAR is missing
       runtimeEnvStrict: {
         NEXT_PUBLIC_BAR: "foo",
@@ -81,14 +85,14 @@ test("runtimeEnv enforces all keys", () => {
 test("new experimental runtime option only requires client vars", () => {
   ignoreErrors(() => {
     createEnv({
-      server: { BAR: z.string() },
-      client: { NEXT_PUBLIC_BAR: z.string() },
+      server: { BAR: vString() },
+      client: { NEXT_PUBLIC_BAR: vString() },
       // @ts-expect-error - NEXT_PUBLIC_BAR is missing
       experimental__runtimeEnv: {},
     });
     createEnv({
-      server: { BAR: z.string() },
-      client: { NEXT_PUBLIC_BAR: z.string() },
+      server: { BAR: vString() },
+      client: { NEXT_PUBLIC_BAR: vString() },
       experimental__runtimeEnv: {
         // @ts-expect-error - BAR should not be specified
         BAR: "bar",
@@ -104,10 +108,10 @@ test("new experimental runtime option only requires client vars", () => {
 
   const env = createEnv({
     shared: {
-      NODE_ENV: z.enum(["development", "production"]),
+      NODE_ENV: vPicklist(["development", "production"]),
     },
-    server: { BAR: z.string() },
-    client: { NEXT_PUBLIC_BAR: z.string() },
+    server: { BAR: vString() },
+    client: { NEXT_PUBLIC_BAR: vString() },
     experimental__runtimeEnv: {
       NODE_ENV: process.env.NODE_ENV,
       NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
@@ -132,8 +136,8 @@ test("new experimental runtime option only requires client vars", () => {
 describe("return type is correctly inferred", () => {
   test("simple", () => {
     const env = createEnv({
-      server: { BAR: z.string() },
-      client: { NEXT_PUBLIC_BAR: z.string() },
+      server: { BAR: vString() },
+      client: { NEXT_PUBLIC_BAR: vString() },
       runtimeEnv: {
         BAR: "bar",
         NEXT_PUBLIC_BAR: "foo",
@@ -155,8 +159,8 @@ describe("return type is correctly inferred", () => {
 
   test("with transforms", () => {
     const env = createEnv({
-      server: { BAR: z.string().transform(Number) },
-      client: { NEXT_PUBLIC_BAR: z.string() },
+      server: { BAR: vTransform(vString(), Number) },
+      client: { NEXT_PUBLIC_BAR: vString() },
       runtimeEnv: {
         BAR: "123",
         NEXT_PUBLIC_BAR: "foo",
@@ -179,7 +183,7 @@ describe("return type is correctly inferred", () => {
 
 test("can specify only server", () => {
   const onlyServer = createEnv({
-    server: { BAR: z.string() },
+    server: { BAR: vString() },
     runtimeEnv: { BAR: "FOO" },
   });
 
@@ -194,7 +198,7 @@ test("can specify only server", () => {
 
 test("can specify only client", () => {
   const onlyClient = createEnv({
-    client: { NEXT_PUBLIC_BAR: z.string() },
+    client: { NEXT_PUBLIC_BAR: vString() },
     runtimeEnv: { NEXT_PUBLIC_BAR: "FOO" },
   });
 
@@ -217,17 +221,17 @@ describe("extending presets", () => {
     function lazyCreateEnv() {
       const preset = createEnv({
         server: {
-          PRESET_ENV: z.string(),
+          PRESET_ENV: vString(),
         },
         experimental__runtimeEnv: processEnv,
       });
 
       return createEnv({
         server: {
-          SERVER_ENV: z.string(),
+          SERVER_ENV: vString(),
         },
         client: {
-          NEXT_PUBLIC_ENV: z.string(),
+          NEXT_PUBLIC_ENV: vString(),
         },
         extends: [preset],
         runtimeEnv: processEnv,
@@ -246,7 +250,7 @@ describe("extending presets", () => {
     expect(() => lazyCreateEnv()).toThrow("Invalid environment variables");
     expect(consoleError.mock.calls[0]).toEqual([
       "❌ Invalid environment variables:",
-      { PRESET_ENV: ["Required"] },
+      { PRESET_ENV: ["Invalid type: Expected string but received undefined"] },
     ]);
   });
   describe("single preset", () => {
@@ -260,20 +264,20 @@ describe("extending presets", () => {
     function lazyCreateEnv() {
       const preset = createEnv({
         server: {
-          PRESET_ENV: z.enum(["preset"]),
+          PRESET_ENV: vPicklist(["preset"]),
         },
         runtimeEnv: processEnv,
       });
 
       return createEnv({
         server: {
-          SERVER_ENV: z.string(),
+          SERVER_ENV: vString(),
         },
         shared: {
-          SHARED_ENV: z.string(),
+          SHARED_ENV: vString(),
         },
         client: {
-          NEXT_PUBLIC_ENV: z.string(),
+          NEXT_PUBLIC_ENV: vString(),
         },
         extends: [preset],
         runtimeEnv: processEnv,
