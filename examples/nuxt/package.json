@@ -8,8 +8,8 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@types/node": "^18.15.13",
-    "nuxt": "^3.4.2"
+    "@types/node": "^20",
+    "nuxt": "^3.10.3"
   },
   "dependencies": {
     "@nurliman/env-valibot": "workspace:*",
