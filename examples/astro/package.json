@@ -12,11 +12,11 @@
   "dependencies": {
     "@astrojs/solid-js": "^4.0.1",
     "@nurliman/env-valibot": "workspace:*",
-    "astro": "^4.5.0",
+    "astro": "^4.5.3",
     "solid-js": "^1.8.15",
     "valibot": "^0.30.0"
   },
   "devDependencies": {
-    "vite": "^5.1.5"
+    "vite": "^5.1.6"
   }
 }
