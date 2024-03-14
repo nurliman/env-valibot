@@ -1,5 +1,13 @@
 # @nurliman/env-valibot
 
+## 0.1.2
+
+### Patch Changes
+
+- [`564fc44`](https://github.com/nurliman/env-valibot/commit/564fc440b5bc2a9645cd87c1c692296a9f141497) Thanks [@nurliman](https://github.com/nurliman)! - update dependencies
+
+- [`3d59ac1`](https://github.com/nurliman/env-valibot/commit/3d59ac153fee2f51a0e86a84daaa77f93529a69d) Thanks [@nurliman](https://github.com/nurliman)! - Remove "docs" from workspaces
+
 ## 0.1.1
 
 ### Patch Changes
