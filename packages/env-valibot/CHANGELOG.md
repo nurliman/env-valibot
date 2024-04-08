@@ -1,5 +1,11 @@
 # @nurliman/env-valibot
 
+## 0.1.4
+
+### Patch Changes
+
+- [`b3665e4`](https://github.com/nurliman/env-valibot/commit/b3665e4be9f16f00caa906180986442d8e74a265) Thanks [@nurliman](https://github.com/nurliman)! - update dependencies
+
 ## 0.1.3
 
 ### Patch Changes
