@@ -6,7 +6,7 @@
   "workspaces": ["examples/*", "packages/*"],
   "scripts": {
     "build": "turbo build --filter=./packages/*",
-    "dev": "turbo dev --filter=./packages/*",
+    "dev": "turbo watch build --filter=./packages/*",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply",
     "test": "turbo test",
