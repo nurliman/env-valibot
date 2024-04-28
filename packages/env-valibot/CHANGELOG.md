@@ -1,5 +1,15 @@
 # @nurliman/env-valibot
 
+## 0.2.0
+
+### Minor Changes
+
+- fetch and merge with upstream
+
+### Patch Changes
+
+- [`4dfef7d`](https://github.com/nurliman/env-valibot/commit/4dfef7d69ff19c742c8218c21e28aaf43591ff3c) Thanks [@nurliman](https://github.com/nurliman)! - update dependencies
+
 ## 0.1.4
 
 ### Patch Changes
