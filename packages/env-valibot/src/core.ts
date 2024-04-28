@@ -198,22 +198,35 @@ export type EnvOptions<
   | (StrictOptions<TPrefix, TServer, TClient, TShared, TExtends> &
       ServerClientOptions<TPrefix, TServer, TClient>);
 
-export function createEnv<
-  TPrefix extends string | undefined,
-  TServer extends Record<string, AnySchema> = NonNullable<unknown>,
-  TClient extends Record<string, AnySchema> = NonNullable<unknown>,
-  TShared extends Record<string, AnySchema> = NonNullable<unknown>,
-  const TExtends extends Array<Record<string, unknown>> = [],
->(
-  opts: EnvOptions<TPrefix, TServer, TClient, TShared, TExtends>,
-): Readonly<
+type TPrefixFormat = string | undefined;
+type TServerFormat = Record<string, AnySchema>;
+type TClientFormat = Record<string, AnySchema>;
+type TSharedFormat = Record<string, AnySchema>;
+type TExtendsFormat = Array<Record<string, unknown>>;
+
+export type CreateEnv<
+  TServer extends TServerFormat,
+  TClient extends TClientFormat,
+  TShared extends TSharedFormat,
+  TExtends extends TExtendsFormat,
+> = Readonly<
   Simplify<
     Output<ObjectSchema<TServer>> &
       Output<ObjectSchema<TClient>> &
       Output<ObjectSchema<TShared>> &
       UnReadonlyObject<Reduce<TExtends>>
   >
-> {
+>;
+
+export function createEnv<
+  TPrefix extends TPrefixFormat,
+  TServer extends TServerFormat = NonNullable<unknown>,
+  TClient extends TClientFormat = NonNullable<unknown>,
+  TShared extends TSharedFormat = NonNullable<unknown>,
+  const TExtends extends TExtendsFormat = [],
+>(
+  opts: EnvOptions<TPrefix, TServer, TClient, TShared, TExtends>,
+): CreateEnv<TServer, TClient, TShared, TExtends> {
   const runtimeEnv = opts.runtimeEnvStrict ?? opts.runtimeEnv ?? process.env;
 
   const emptyStringAsUndefined = opts.emptyStringAsUndefined ?? false;
@@ -235,7 +248,8 @@ export function createEnv<
   const client = vObject(_client);
   const server = vObject(_server);
   const shared = vObject(_shared);
-  const isServer = opts.isServer ?? typeof window === "undefined";
+  const isServer =
+    opts.isServer ?? (typeof window === "undefined" || "Deno" in window);
 
   const allClient = vMerge([client, shared]);
   const allServer = vMerge([server, shared, client]);

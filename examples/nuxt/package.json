@@ -1,5 +1,6 @@
 {
   "name": "@examples/nuxt",
+  "type": "module",
   "private": true,
   "scripts": {
     "build": "nuxt build",

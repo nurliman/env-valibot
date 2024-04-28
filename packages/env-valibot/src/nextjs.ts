@@ -1,4 +1,5 @@
 import {
+  type CreateEnv,
   type ServerClientOptions,
   type StrictOptions,
   createEnv as createEnvCore,
@@ -9,10 +10,13 @@ const CLIENT_PREFIX = "NEXT_PUBLIC_" as const;
 type ClientPrefix = typeof CLIENT_PREFIX;
 
 type Options<
-  TServer extends Record<string, AnySchema>,
-  TClient extends Record<`${ClientPrefix}${string}`, AnySchema>,
-  TShared extends Record<string, AnySchema>,
-  TExtends extends Array<Record<string, unknown>>,
+  TServer extends Record<string, AnySchema> = NonNullable<unknown>,
+  TClient extends Record<
+    `${ClientPrefix}${string}`,
+    AnySchema
+  > = NonNullable<unknown>,
+  TShared extends Record<string, AnySchema> = NonNullable<unknown>,
+  TExtends extends Array<Record<string, unknown>> = [],
 > = Omit<
   StrictOptions<ClientPrefix, TServer, TClient, TShared, TExtends> &
     ServerClientOptions<ClientPrefix, TServer, TClient>,
@@ -60,7 +64,9 @@ export function createEnv<
   > = NonNullable<unknown>,
   TShared extends Record<string, AnySchema> = NonNullable<unknown>,
   const TExtends extends Array<Record<string, unknown>> = [],
->(opts: Options<TServer, TClient, TShared, TExtends>) {
+>(
+  opts: Options<TServer, TClient, TShared, TExtends>,
+): CreateEnv<TServer, TClient, TShared, TExtends> {
   const client = typeof opts.client === "object" ? opts.client : {};
   const server = typeof opts.server === "object" ? opts.server : {};
   const shared = opts.shared;

@@ -15,5 +15,5 @@ export const env = createNextjsEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_GREETING: process.env.NEXT_PUBLIC_GREETING,
   },
-  extends: [presetVercel],
+  extends: [presetVercel()],
 });
