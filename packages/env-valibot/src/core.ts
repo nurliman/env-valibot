@@ -5,7 +5,7 @@ import {
   object as vObject,
   safeParse as vSafeParse,
 } from "valibot";
-import type { AnySchema } from "./utils";
+import type { AnySchema } from "./utils.ts";
 
 export type ErrorMessage<T extends string> = T;
 export type Simplify<T> = {

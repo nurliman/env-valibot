@@ -3,8 +3,8 @@ import {
   type ServerClientOptions,
   type StrictOptions,
   createEnv as createEnvCore,
-} from "./core";
-import type { AnySchema } from "./utils";
+} from "./core.ts";
+import type { AnySchema } from "./utils.ts";
 
 const CLIENT_PREFIX = "NUXT_PUBLIC_" as const;
 type ClientPrefix = typeof CLIENT_PREFIX;

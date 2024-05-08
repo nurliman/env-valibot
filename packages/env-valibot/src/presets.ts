@@ -3,7 +3,7 @@ import {
   picklist as vPicklist,
   string as vString,
 } from "valibot";
-import { createEnv } from "./core";
+import { createEnv } from "./core.ts";
 
 /**
  * Vercel System Environment Variables
