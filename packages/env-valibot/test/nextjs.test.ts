@@ -5,7 +5,7 @@ import {
   transform as vTransform,
 } from "valibot";
 import { describe, expect, test, vi } from "vitest";
-import { createEnv } from "../src/nextjs";
+import { createEnv } from "../src/nextjs.ts";
 
 function ignoreErrors(cb: () => void) {
   try {

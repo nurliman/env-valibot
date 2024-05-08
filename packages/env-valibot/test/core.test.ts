@@ -8,7 +8,7 @@ import {
   transform as vTransform,
 } from "valibot";
 import { describe, expect, test, vi } from "vitest";
-import { createEnv } from "../src/core";
+import { createEnv } from "../src/core.ts";
 
 function ignoreErrors(cb: () => void) {
   try {
