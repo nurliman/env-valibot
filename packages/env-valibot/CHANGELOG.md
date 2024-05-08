@@ -1,5 +1,11 @@
 # @nurliman/env-valibot
 
+## 0.3.1
+
+### Patch Changes
+
+- [`48e7ce4`](https://github.com/nurliman/env-valibot/commit/48e7ce4ea6454f456c42694bfd0e0bd2146a5d49) Thanks [@nurliman](https://github.com/nurliman)! - Update GitHub Actions workflow for release
+
 ## 0.3.0
 
 ### Minor Changes
