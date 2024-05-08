@@ -9,6 +9,6 @@
     "./presets": "./src/presets.ts"
   },
   "publish": {
-    "include": ["src/**/*.ts", "deno.json"]
+    "include": ["src/**/*.ts", "deno.json", "package.json"]
   }
 }
