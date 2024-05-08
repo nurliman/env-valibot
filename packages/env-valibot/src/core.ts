@@ -1,8 +1,8 @@
-/** 
+/**
  * This is the core package of t3-env.
  * It contains the `createEnv` function that you can use to create your schema.
  * @module
-*/
+ */
 
 import type { ObjectSchema, Output, SchemaIssues } from "valibot";
 import {
@@ -13,7 +13,10 @@ import {
 } from "valibot";
 import type { AnySchema } from "./utils.ts";
 
+/** @internal */
 export type ErrorMessage<T extends string> = T;
+
+/** @internal */
 export type Simplify<T> = {
   [P in keyof T]: T[P];
 } & {};
@@ -36,6 +39,9 @@ type Reduce<
       : never
     : never;
 
+/**
+ * The options that can be passed to the `createEnv` function.
+ */
 export interface BaseOptions<
   TShared extends Record<string, AnySchema>,
   TExtends extends Array<Record<string, unknown>>,
@@ -91,6 +97,11 @@ export interface BaseOptions<
   emptyStringAsUndefined?: boolean;
 }
 
+/**
+ * Using this interface doesn't validate all environment variables are specified
+ * in the `runtimeEnv` object. You may want to use `StrictOptions` instead if
+ * your framework performs static analysis and tree-shakes unused variables.
+ */
 export interface LooseOptions<
   TShared extends Record<string, AnySchema>,
   TExtends extends Array<Record<string, unknown>>,
@@ -105,6 +116,12 @@ export interface LooseOptions<
   runtimeEnv: Record<string, string | boolean | number | undefined>;
 }
 
+/**
+ * Using this interface validates all environment variables are specified
+ * in the `runtimeEnv` object. If you miss one, you'll get a type error. Useful
+ * if you want to make sure all environment variables are set for frameworks that
+ * perform static analysis and tree-shakes unused variables.
+ */
 export interface StrictOptions<
   TPrefix extends string | undefined,
   TServer extends Record<string, AnySchema>,
@@ -139,6 +156,12 @@ export interface StrictOptions<
   runtimeEnv?: never;
 }
 
+/**
+ * This interface is used to define the client-side environment variables.
+ * It's used in conjunction with the `clientPrefix` option to ensure
+ * that all client-side variables are prefixed with the same string.
+ * Common examples of prefixes are `NEXT_PUBLIC_`, `NUXT_PUBLIC` or `PUBLIC_`.
+ */
 export interface ClientOptions<
   TPrefix extends string | undefined,
   TClient extends Record<string, AnySchema>,
@@ -162,6 +185,10 @@ export interface ClientOptions<
   }>;
 }
 
+/**
+ * This interface is used to define the schema for your 
+ * server-side environment variables.
+ */
 export interface ServerOptions<
   TPrefix extends string | undefined,
   TServer extends Record<string, AnySchema>,
@@ -210,6 +237,9 @@ type TClientFormat = Record<string, AnySchema>;
 type TSharedFormat = Record<string, AnySchema>;
 type TExtendsFormat = Array<Record<string, unknown>>;
 
+/**
+ * Creates a new environment variable schema.
+ */
 export type CreateEnv<
   TServer extends TServerFormat,
   TClient extends TClientFormat,
@@ -224,6 +254,9 @@ export type CreateEnv<
   >
 >;
 
+/**
+ * Create a new environment variable schema.
+ */
 export function createEnv<
   TPrefix extends TPrefixFormat,
   TServer extends TServerFormat = NonNullable<unknown>,
