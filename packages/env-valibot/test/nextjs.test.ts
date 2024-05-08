@@ -4,7 +4,7 @@ import {
   string as vString,
   transform as vTransform,
 } from "@valibot/valibot";
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, spyOn, test } from "bun:test";
 import { createEnv } from "../src/nextjs.ts";
 
 function ignoreErrors(cb: () => void) {
@@ -246,7 +246,7 @@ describe("extending presets", () => {
       }>
     >();
 
-    const consoleError = vi.spyOn(console, "error");
+    const consoleError = spyOn(console, "error");
     expect(() => lazyCreateEnv()).toThrow("Invalid environment variables");
     expect(consoleError.mock.calls[0]).toEqual([
       "❌ Invalid environment variables:",
