@@ -1,0 +1,14 @@
+{
+  "$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+  "name": "@nurliman/env-valibot",
+  "exports": {
+    ".": "./src/index.ts",
+    "./core": "./src/core.ts",
+    "./nextjs": "./src/nextjs.ts",
+    "./nuxt": "./src/nuxt.ts",
+    "./presets": "./src/presets.ts"
+  },
+  "publish": {
+    "include": ["src/**/*.ts", "deno.json"]
+  }
+}
