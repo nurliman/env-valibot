@@ -9,8 +9,8 @@ import { createEnv } from "./core.ts";
  * Vercel System Environment Variables
  * @see https://vercel.com/docs/projects/environment-variables/system-environment-variables#system-environment-variables
  */
-export const vercel = () =>
-  createEnv({
+export function vercel() {
+  return createEnv({
     server: {
       VERCEL: vOptional(vString()),
       VERCEL_ENV: vOptional(
@@ -33,16 +33,18 @@ export const vercel = () =>
       VERCEL_GIT_PULL_REQUEST_ID: vOptional(vString()),
     },
     runtimeEnv: process.env,
-  });
+  } as const);
+}
 
 /**
  * @see https://docs.uploadthing.com/getting-started/appdir#add-env-variables
  */
-export const uploadthing = () =>
-  createEnv({
+export function uploadthing() {
+  return createEnv({
     server: {
       UPLOADTHING_SECRET: vString(),
       UPLOADTHING_APP_ID: vOptional(vString()),
     },
     runtimeEnv: process.env,
-  });
+  } as const);
+}
