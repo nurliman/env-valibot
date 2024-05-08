@@ -1,5 +1,17 @@
 # @nurliman/env-valibot
 
+## 0.2.1
+
+### Patch Changes
+
+- [`2d497df`](https://github.com/nurliman/env-valibot/commit/2d497df9aaf73fe613212014bce0eddefc8187ec) Thanks [@nurliman](https://github.com/nurliman)! - update github action for release
+
+- [`beac74e`](https://github.com/nurliman/env-valibot/commit/beac74e5742cc7a7c0a86744c7885ffc296e1f39) Thanks [@nurliman](https://github.com/nurliman)! - Update file extensions for imported modules
+
+- [`ccbd52c`](https://github.com/nurliman/env-valibot/commit/ccbd52cdc20b0ab80c3d19f0bc099f651f2c62af) Thanks [@nurliman](https://github.com/nurliman)! - use jsr for valibot dependency
+
+- [`d108472`](https://github.com/nurliman/env-valibot/commit/d108472202b40065f37bfd9fb6efae99c24ee0ad) Thanks [@nurliman](https://github.com/nurliman)! - update dependencies
+
 ## 0.2.0
 
 ### Minor Changes
