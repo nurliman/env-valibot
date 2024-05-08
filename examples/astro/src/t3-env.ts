@@ -1,5 +1,5 @@
 import { createEnv } from "@nurliman/env-valibot";
-import { string as vString } from "@valibot/valibot";
+import { string as vString } from "valibot";
 
 export const env = createEnv({
   server: {

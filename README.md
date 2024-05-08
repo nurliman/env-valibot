@@ -28,7 +28,7 @@ This package supports the full power of Valibot, meaning you can use `transforms
 ```ts
 // src/env.mjs
 import { createNextjsEnv } from "@nurliman/env-valibot";
-import * as v from "@valibot/valibot";
+import * as v from 'valibot';
 
 export const env = createNextjsEnv({
   /*

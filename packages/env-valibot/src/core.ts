@@ -1,10 +1,10 @@
-import type { ObjectSchema, Output, SchemaIssues } from "@valibot/valibot";
+import type { ObjectSchema, Output, SchemaIssues } from "valibot";
 import {
   flatten as vFlatten,
   merge as vMerge,
   object as vObject,
   safeParse as vSafeParse,
-} from "@valibot/valibot";
+} from "valibot";
 import type { AnySchema } from "./utils";
 
 export type ErrorMessage<T extends string> = T;

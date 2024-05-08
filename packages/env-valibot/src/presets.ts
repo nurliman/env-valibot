@@ -2,7 +2,7 @@ import {
   optional as vOptional,
   picklist as vPicklist,
   string as vString,
-} from "@valibot/valibot";
+} from "valibot";
 import { createEnv } from "./core";
 
 /**
