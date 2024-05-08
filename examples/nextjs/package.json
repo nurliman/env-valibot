@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "@nurliman/env-valibot": "workspace:*",
+    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.30.0",
     "next": "^14.2.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "valibot": "npm:@jsr/valibot__valibot@^0.30.0"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20",

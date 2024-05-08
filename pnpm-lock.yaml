@@ -51,15 +51,15 @@ importers:
       '@nurliman/env-valibot':
         specifier: workspace:*
         version: link:../../packages/env-valibot
+      '@valibot/valibot':
+        specifier: npm:@jsr/valibot__valibot@^0.30.0
+        version: '@jsr/valibot__valibot@0.30.0'
       astro:
         specifier: ^4.7.1
         version: 4.7.1(@types/node@20.12.10)(terser@5.31.0)(typescript@5.4.5)
       solid-js:
         specifier: ^1.8.17
         version: 1.8.17
-      valibot:
-        specifier: npm:@jsr/valibot__valibot@^0.30.0
-        version: '@jsr/valibot__valibot@0.30.0'
     devDependencies:
       vite:
         specifier: ^5.2.11
@@ -70,6 +70,9 @@ importers:
       '@nurliman/env-valibot':
         specifier: workspace:*
         version: link:../../packages/env-valibot
+      '@valibot/valibot':
+        specifier: npm:@jsr/valibot__valibot@^0.30.0
+        version: '@jsr/valibot__valibot@0.30.0'
       next:
         specifier: ^14.2.3
         version: 14.2.3(@opentelemetry/api@1.8.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -79,9 +82,6 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
-      valibot:
-        specifier: npm:@jsr/valibot__valibot@^0.30.0
-        version: '@jsr/valibot__valibot@0.30.0'
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -104,7 +104,7 @@ importers:
       '@nurliman/env-valibot':
         specifier: workspace:*
         version: link:../../packages/env-valibot
-      valibot:
+      '@valibot/valibot':
         specifier: npm:@jsr/valibot__valibot@^0.30.0
         version: '@jsr/valibot__valibot@0.30.0'
     devDependencies:
@@ -117,6 +117,9 @@ importers:
 
   packages/env-valibot:
     devDependencies:
+      '@valibot/valibot':
+        specifier: npm:@jsr/valibot__valibot@^0.30.0
+        version: '@jsr/valibot__valibot@0.30.0'
       cpy-cli:
         specifier: ^3
         version: 3.1.1
@@ -129,9 +132,6 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
-      valibot:
-        specifier: npm:@jsr/valibot__valibot@^0.30.0
-        version: '@jsr/valibot__valibot@0.30.0'
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@20.12.10)(terser@5.31.0)
@@ -924,7 +924,7 @@ packages:
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
   '@jsr/valibot__valibot@0.30.0':
-    resolution: {integrity: sha512-6QPrwgO6XwxtWiL1UJELpcgQYUuop1AxA10/YaoEsJipkVwU8Q7tiIbQvlWmgEQtGBMa1r7M+xuipTIp/MW4mw==, tarball: https://npm.jsr.io/~/10/@jsr/valibot__valibot/0.30.0.tgz}
+    resolution: {integrity: sha512-2xziKfQdD7kWzTIOfCYud05FsS2Jcu/PsBovJdG7dXhygiRqQ0Gh5M2yg1GLfEkCdSNYNLzPg7zT6Xb4fESLBA==, tarball: https://npm.jsr.io/~/11/@jsr/valibot__valibot/0.30.0.tgz}
 
   '@kwsites/file-exists@1.1.1':
     resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}

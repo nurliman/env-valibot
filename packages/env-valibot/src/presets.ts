@@ -9,7 +9,7 @@ import {
   optional as vOptional,
   picklist as vPicklist,
   string as vString,
-} from "valibot";
+} from "@valibot/valibot";
 import { createEnv } from "./core.ts";
 
 /**

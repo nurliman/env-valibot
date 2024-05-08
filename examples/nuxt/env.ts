@@ -1,5 +1,5 @@
 import { createNuxtEnv } from "@nurliman/env-valibot";
-import { string as vString } from "valibot";
+import { string as vString } from "@valibot/valibot";
 
 export const env = createNuxtEnv({
   server: {

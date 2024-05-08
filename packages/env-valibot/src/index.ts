@@ -14,7 +14,7 @@
  * ```ts
  * // src/env.mjs
  * import { createNextjsEnv } from "@nurliman/env-valibot";
- * import * as v from "valibot";
+ * import * as v from "@valibot/valibot";
  *
  * export const env = createNextjsEnv({
  *   // Serverside Environment variables, not available on the client.

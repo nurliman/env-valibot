@@ -1,5 +1,5 @@
 import { createNextjsEnv, presetVercel } from "@nurliman/env-valibot";
-import { picklist as vPicklist, string as vString } from "valibot";
+import { picklist as vPicklist, string as vString } from "@valibot/valibot";
 
 export const env = createNextjsEnv({
   client: {

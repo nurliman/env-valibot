@@ -1,4 +1,4 @@
-import type { BaseSchema } from "valibot";
+import type { BaseSchema } from "@valibot/valibot";
 
 /** @internal */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

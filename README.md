@@ -13,10 +13,14 @@ Deploying your app with invalid environment variables is a hassle. This package 
 >This is an ESM only package that requires a tsconfig with a module resolution that can read package.json#exports (`NodeNext` if transpiling with `tsc`, `Bundler` if using a bundler).
 
 ```bash
-# Core package, no framework specific features
-pnpm add @nurliman/env-valibot valibot
-# or, with options preconfigured for Next.js
-pnpm add @nurliman/env-valibot valibot
+# deno
+deno add @nurliman/env-valibot @valibot/valibot
+
+# npm (one of the below, depending on your package manager)
+npx jsr add @nurliman/env-valibot @valibot/valibot
+yarn dlx jsr add @nurliman/env-valibot @valibot/valibot
+pnpm dlx jsr add @nurliman/env-valibot @valibot/valibot
+bunx jsr add @nurliman/env-valibot @valibot/valibot
 ```
 
 > Currently only supports Valibot (which you'll need to install separately). Bring your own validation library is on the roadmap.
@@ -32,7 +36,7 @@ This package supports the full power of Valibot, meaning you can use `transforms
 ```ts
 // src/env.mjs
 import { createNextjsEnv } from "@nurliman/env-valibot";
-import * as v from "valibot";
+import * as v from "@valibot/valibot";
 
 export const env = createNextjsEnv({
   /*
