@@ -16,7 +16,10 @@ async function publishDenoPackage(pkgPath = process.cwd()) {
   // check if deno.json exists
   if (!fs.existsSync(denoJsonPath)) return;
 
-  await execa("npx", ["jsr", "publish", "--allow-dirty"], { cwd: pkgPath });
+  await execa("npx", ["jsr", "publish", "--allow-dirty"], {
+    cwd: pkgPath,
+    stdio: "inherit",
+  });
 }
 
 async function main() {
