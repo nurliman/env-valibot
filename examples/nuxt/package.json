@@ -9,7 +9,6 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@types/node": "^20",
     "nuxt": "^3.11.2"
   },
   "dependencies": {

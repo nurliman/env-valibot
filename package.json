@@ -1,6 +1,6 @@
 {
   "name": "@nurliman/env-valibot-root",
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "bun@1.1.7",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -15,8 +15,8 @@
     "test": "turbo test",
     "typecheck": "turbo typecheck",
     "version-packages": "changeset version",
-    "deno:sync-version": "node ./scripts/syncDenoVersion.js",
-    "deno:publish": "node ./scripts/publishDenoPackages.js",
+    "deno:sync-version": "bun ./scripts/syncDenoVersion.ts",
+    "deno:publish": "bun ./scripts/publishDenoPackages.ts",
     "release": "npm run build && npm run lint:fix && npm run typecheck && npm run test --filter=./packages/* && changeset publish"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
+    "@types/bun": "latest",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20"
   }
