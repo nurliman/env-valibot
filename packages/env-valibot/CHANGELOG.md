@@ -1,5 +1,15 @@
 # @nurliman/env-valibot
 
+## 0.4.1
+
+### Patch Changes
+
+- [`0cf6dae`](https://github.com/nurliman/env-valibot/commit/0cf6daeafaf67f0a5848744d9193c4cc7833300c) Thanks [@nurliman](https://github.com/nurliman)! - Update publishDenoPackages.js to inherit stdio when executing jsr publish command
+
+- [`e4d43d8`](https://github.com/nurliman/env-valibot/commit/e4d43d8e2aa8f6387d45dd48e13354c988ec66a5) Thanks [@nurliman](https://github.com/nurliman)! - add symlink for `README.md` and `LICENSE`
+
+- [`1a8deba`](https://github.com/nurliman/env-valibot/commit/1a8debaa942a98a131cfb98e0501fd0a75c99e4e) Thanks [@nurliman](https://github.com/nurliman)! - Revert "chore: Refactor presets"
+
 ## 0.4.0
 
 ### Minor Changes
