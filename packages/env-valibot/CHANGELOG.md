@@ -1,5 +1,19 @@
 # @nurliman/env-valibot
 
+## 0.4.0
+
+### Minor Changes
+
+- [`1d89ce9`](https://github.com/nurliman/env-valibot/commit/1d89ce929f9f7dc01c0788141c69cf0ba6d54df4) Thanks [@nurliman](https://github.com/nurliman)! - Refactor env-valibot module files for better documentation and code organization
+
+### Patch Changes
+
+- [`c5ee888`](https://github.com/nurliman/env-valibot/commit/c5ee888f81001f2cba0ef99b7a9a62e602388fc5) Thanks [@nurliman](https://github.com/nurliman)! - Refactor presets
+
+- [`b621fb9`](https://github.com/nurliman/env-valibot/commit/b621fb9afccf3c7de6f82aa36505dd10d71b6052) Thanks [@nurliman](https://github.com/nurliman)! - Improve documentation in env-valibot module files
+
+- [`807ce13`](https://github.com/nurliman/env-valibot/commit/807ce138b40eb915b8015e1507624be216cf2dca) Thanks [@nurliman](https://github.com/nurliman)! - Update README.md with badges for npm package and jsr.io
+
 ## 0.3.1
 
 ### Patch Changes
