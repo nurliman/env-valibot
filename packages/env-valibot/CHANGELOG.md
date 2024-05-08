@@ -1,5 +1,11 @@
 # @nurliman/env-valibot
 
+## 0.5.1
+
+### Patch Changes
+
+- [`3c24d49`](https://github.com/nurliman/env-valibot/commit/3c24d493900a7f72d4cc0aaaf345f20351cb9504) Thanks [@nurliman](https://github.com/nurliman)! - use bun shell instead of execa
+
 ## 0.5.0
 
 ### Minor Changes
