@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "@nurliman/env-valibot": "workspace:*",
-    "valibot": "^0.30.0"
+    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.30.0"
   }
 }

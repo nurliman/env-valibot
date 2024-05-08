@@ -6,7 +6,7 @@ import {
   picklist as vPicklist,
   string as vString,
   transform as vTransform,
-} from "valibot";
+} from "@valibot/valibot";
 import { describe, expect, test, vi } from "vitest";
 import { createEnv } from "../src/core";
 
