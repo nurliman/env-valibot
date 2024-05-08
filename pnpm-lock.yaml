@@ -46,8 +46,8 @@ importers:
         specifier: ^1.8.17
         version: 1.8.17
       valibot:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: npm:@jsr/valibot__valibot@^0.30.0
+        version: '@jsr/valibot__valibot@0.30.0'
     devDependencies:
       vite:
         specifier: ^5.2.11
@@ -68,8 +68,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       valibot:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: npm:@jsr/valibot__valibot@^0.30.0
+        version: '@jsr/valibot__valibot@0.30.0'
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -93,8 +93,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/env-valibot
       valibot:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: npm:@jsr/valibot__valibot@^0.30.0
+        version: '@jsr/valibot__valibot@0.30.0'
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -115,8 +115,8 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
       valibot:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: npm:@jsr/valibot__valibot@^0.30.0
+        version: '@jsr/valibot__valibot@0.30.0'
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@20.12.10)(terser@5.31.0)
@@ -907,6 +907,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@jsr/valibot__valibot@0.30.0':
+    resolution: {integrity: sha512-6QPrwgO6XwxtWiL1UJELpcgQYUuop1AxA10/YaoEsJipkVwU8Q7tiIbQvlWmgEQtGBMa1r7M+xuipTIp/MW4mw==, tarball: https://npm.jsr.io/~/10/@jsr/valibot__valibot/0.30.0.tgz}
 
   '@kwsites/file-exists@1.1.1':
     resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
@@ -5422,9 +5425,6 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  valibot@0.30.0:
-    resolution: {integrity: sha512-5POBdbSkM+3nvJ6ZlyQHsggisfRtyT4tVTo1EIIShs6qCdXJnyWU5TJ68vr8iTg5zpOLjXLRiBqNx+9zwZz/rA==}
-
   validate-html-nesting@1.2.2:
     resolution: {integrity: sha512-hGdgQozCsQJMyfK5urgFcWEqsSSrK63Awe0t/IMR0bZ0QMtnuaiHzThW81guu3qx9abLi99NEuiaN6P9gVYsNg==}
 
@@ -6605,6 +6605,8 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  '@jsr/valibot__valibot@0.30.0': {}
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
@@ -12231,8 +12233,6 @@ snapshots:
   urlpattern-polyfill@8.0.2: {}
 
   util-deprecate@1.0.2: {}
-
-  valibot@0.30.0: {}
 
   validate-html-nesting@1.2.2: {}
 

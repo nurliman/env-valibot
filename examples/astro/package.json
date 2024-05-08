@@ -13,7 +13,7 @@
     "@nurliman/env-valibot": "workspace:*",
     "astro": "^4.7.1",
     "solid-js": "^1.8.17",
-    "valibot": "^0.30.0"
+    "valibot": "npm:@jsr/valibot__valibot@^0.30.0"
   },
   "devDependencies": {
     "vite": "^5.2.11"
