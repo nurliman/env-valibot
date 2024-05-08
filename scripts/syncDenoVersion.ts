@@ -1,4 +1,4 @@
-import fs from "fs-extra";
+import fse from "fs-extra";
 import path from "node:path";
 import { getPackages } from "@manypkg/get-packages";
 
@@ -7,10 +7,9 @@ async function sychronizeVersion(pkgPath = process.cwd()) {
   const pkgJsonPath = path.join(pkgPath, "package.json");
 
   // check if package.json exists
-  if (!fs.existsSync(pkgJsonPath)) return;
+  if (!fse.existsSync(pkgJsonPath)) return;
 
-  const pkgJsonStr = await fs.readFile(pkgJsonPath);
-  const pkgJson = JSON.parse(pkgJsonStr);
+  const pkgJson = await fse.readJSON(pkgJsonPath);
   const pkgVersion = pkgJson.version;
 
   if (!pkgVersion) return;
@@ -19,12 +18,11 @@ async function sychronizeVersion(pkgPath = process.cwd()) {
   const denoJsonPath = path.join(pkgPath, "deno.json");
 
   // check if deno.json exists
-  if (!fs.existsSync(denoJsonPath)) return;
+  if (!fse.existsSync(denoJsonPath)) return;
 
-  const denoJsonStr = await fs.readFile(denoJsonPath);
-  const denoJson = JSON.parse(denoJsonStr);
+  const denoJson = await fse.readJSON(denoJsonPath);
   denoJson.version = pkgVersion;
-  await fs.writeFile(denoJsonPath, JSON.stringify(denoJson, null, 2));
+  await fse.writeJSON(denoJsonPath, denoJson, { spaces: 2 });
 }
 
 async function main() {
