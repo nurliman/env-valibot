@@ -1,5 +1,19 @@
 # @nurliman/env-valibot
 
+## 0.3.0
+
+### Minor Changes
+
+- [`d11d2cb`](https://github.com/nurliman/env-valibot/commit/d11d2cb5c6e111e7d6bd23b2b8467cc091c21010) Thanks [@nurliman](https://github.com/nurliman)! - setup scripts to publish jsr packages
+
+### Patch Changes
+
+- [`ac93cd9`](https://github.com/nurliman/env-valibot/commit/ac93cd90b38fcc0fd946faf78f937d80c155ed39) Thanks [@nurliman](https://github.com/nurliman)! - add explicit return type
+
+- [`8654e08`](https://github.com/nurliman/env-valibot/commit/8654e08fa4f755c63bb81b1fe5899c79ecf5e198) Thanks [@nurliman](https://github.com/nurliman)! - Update comments in env-valibot module files for better documentation
+
+- [`5cb78a7`](https://github.com/nurliman/env-valibot/commit/5cb78a7c9bb3370b18351425ca0ab6fd6204e3cf) Thanks [@nurliman](https://github.com/nurliman)! - Refactor presets.ts to use function declarations instead of arrow functions
+
 ## 0.2.1
 
 ### Patch Changes
