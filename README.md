@@ -1,5 +1,9 @@
 # Typesafe Envs made Simple
 
+[![jsr.io/@nurliman/env-valibot](https://jsr.io/badges/@nurliman/env-valibot)](https://jsr.io/@nurliman/env-valibot)
+[![jsr.io/@nurliman/env-valibot score](https://jsr.io/badges/@nurliman/env-valibot/score)](https://jsr.io/@nurliman/env-valibot)
+[![npm Version](https://img.shields.io/npm/v/%40nurliman%2Fenv-valibot)](https://www.npmjs.com/package/@nurliman/env-valibot)
+
 Deploying your app with invalid environment variables is a hassle. This package helps you to avoid that.
 
 ## Installation
