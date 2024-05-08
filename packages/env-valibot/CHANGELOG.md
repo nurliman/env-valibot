@@ -1,5 +1,19 @@
 # @nurliman/env-valibot
 
+## 0.5.0
+
+### Minor Changes
+
+- [`e3300c5`](https://github.com/nurliman/env-valibot/commit/e3300c51a0798732a93aec0dba588a2a0c338b2f) Thanks [@nurliman](https://github.com/nurliman)! - use bun instead of pnpm
+
+- [`66c994d`](https://github.com/nurliman/env-valibot/commit/66c994d65d332b8651ae1aba53a62c84e275f5ee) Thanks [@nurliman](https://github.com/nurliman)! - Update import paths for @valibot/valibot
+
+### Patch Changes
+
+- [`115ae58`](https://github.com/nurliman/env-valibot/commit/115ae58149028111d102555e843f3a6718ff33fd) Thanks [@nurliman](https://github.com/nurliman)! - Update syncDenoVersion script to use fs-extra's readJSON and writeJSON methods
+
+- [`1b35d03`](https://github.com/nurliman/env-valibot/commit/1b35d031215ed2bcfa0ab32531bec0f029a7fb31) Thanks [@nurliman](https://github.com/nurliman)! - use bun:test instead of vitest
+
 ## 0.4.2
 
 ### Patch Changes
