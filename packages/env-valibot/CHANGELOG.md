@@ -1,5 +1,11 @@
 # @nurliman/env-valibot
 
+## 0.5.2
+
+### Patch Changes
+
+- [`cf107b0`](https://github.com/nurliman/env-valibot/commit/cf107b0bb7b13e1b324f6f6ced01ea01db25365f) Thanks [@nurliman](https://github.com/nurliman)! - Update publishDenoPackages script to use cwd option for bunx command
+
 ## 0.5.1
 
 ### Patch Changes
