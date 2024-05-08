@@ -55,9 +55,11 @@
     "build": "tsup --config tsup.config.ts",
     "dev": "tsup --config tsup.config.ts --watch",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepack": "cpy '../../README.md' '../../LICENSE' ."
   },
   "devDependencies": {
+    "cpy-cli": "^3",
     "expect-type": "^0.19.0",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5",
