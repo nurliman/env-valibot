@@ -1,3 +1,8 @@
+/**
+ * env-valibot module for Next.js.
+ * @module
+ */
+
 import {
   type CreateEnv,
   type ServerClientOptions,

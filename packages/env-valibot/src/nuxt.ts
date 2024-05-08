@@ -1,3 +1,8 @@
+/**
+ * env-valibot module for Nuxt
+ * @module
+ */
+
 import {
   type CreateEnv,
   type ServerClientOptions,

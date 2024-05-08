@@ -1,3 +1,9 @@
+/** 
+ * This is the core package of t3-env.
+ * It contains the `createEnv` function that you can use to create your schema.
+ * @module
+*/
+
 import type { ObjectSchema, Output, SchemaIssues } from "valibot";
 import {
   flatten as vFlatten,
