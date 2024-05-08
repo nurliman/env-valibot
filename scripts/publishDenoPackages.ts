@@ -21,7 +21,7 @@ async function publishDenoPackage(pkgPath = process.cwd()) {
   // check if version exists
   if (!denoJson.version) return;
 
-  await $`bunx jsr publish --allow-dirty`;
+  await $`bunx jsr publish --allow-dirty`.cwd(pkgPath);
 }
 
 async function main() {
