@@ -1,5 +1,15 @@
 # @nurliman/env-valibot
 
+## 0.4.2
+
+### Patch Changes
+
+- [`057e8d8`](https://github.com/nurliman/env-valibot/commit/057e8d8257265a59b1a05bf6aaeedf84fc5aa758) Thanks [@nurliman](https://github.com/nurliman)! - Revert "add symlink for `README.md` and `LICENSE`"
+
+- [`d3f88fd`](https://github.com/nurliman/env-valibot/commit/d3f88fdb1d70ee83f01626b9866b0d520d1bdbab) Thanks [@nurliman](https://github.com/nurliman)! - Add prepack script to copy README.md and LICENSE files
+
+- [`94c690e`](https://github.com/nurliman/env-valibot/commit/94c690e8084569918155c9e49595ec352ab469f5) Thanks [@nurliman](https://github.com/nurliman)! - Add \*.md files to the "files" list in package.json
+
 ## 0.4.1
 
 ### Patch Changes
