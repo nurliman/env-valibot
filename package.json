@@ -3,7 +3,10 @@
   "packageManager": "pnpm@9.1.0",
   "private": true,
   "type": "module",
-  "workspaces": ["examples/*", "packages/*"],
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build --filter=./packages/*",
     "dev": "turbo watch build --filter=./packages/*",
@@ -12,17 +15,23 @@
     "test": "turbo test",
     "typecheck": "turbo typecheck",
     "version-packages": "changeset version",
+    "deno:sync-version": "node ./scripts/syncDenoVersion.js",
+    "deno:publish": "node ./scripts/publishDenoPackages.js",
     "release": "npm run build && npm run lint:fix && npm run typecheck && npm run test --filter=./packages/* && changeset publish"
   },
   "dependencies": {
     "@biomejs/biome": "1.7.3",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@types/node": "^20",
+    "@manypkg/get-packages": "^2.2.1",
+    "execa": "^8.0.1",
+    "fs-extra": "^11.2.0",
     "turbo": "^1.13.3",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.4"
+    "@tsconfig/node18": "^18.2.4",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20"
   }
 }
