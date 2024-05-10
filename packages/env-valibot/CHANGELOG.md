@@ -1,5 +1,13 @@
 # @nurliman/env-valibot
 
+## 0.5.3
+
+### Patch Changes
+
+- [`87e7675`](https://github.com/nurliman/env-valibot/commit/87e767541a66173c6df3f0805d7933fe402d9ab4) Thanks [@nurliman](https://github.com/nurliman)! - Update import paths for @valibot/valibot
+
+- [`9634f20`](https://github.com/nurliman/env-valibot/commit/9634f208b1f4816e0c3276a1c4dbdc8acba2eaf0) Thanks [@nurliman](https://github.com/nurliman)! - update dependencies
+
 ## 0.5.2
 
 ### Patch Changes
