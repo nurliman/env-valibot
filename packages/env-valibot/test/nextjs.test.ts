@@ -1,6 +1,7 @@
 import { expectTypeOf } from "expect-type";
 import {
   picklist as vPicklist,
+  pipe as vPipe,
   string as vString,
   transform as vTransform,
 } from "@valibot/valibot";
@@ -159,7 +160,7 @@ describe("return type is correctly inferred", () => {
 
   test("with transforms", () => {
     const env = createEnv({
-      server: { BAR: vTransform(vString(), Number) },
+      server: { BAR: vPipe(vString(), vTransform(Number)) },
       client: { NEXT_PUBLIC_BAR: vString() },
       runtimeEnv: {
         BAR: "123",
@@ -316,10 +317,10 @@ describe("extending presets", () => {
       const env = lazyCreateEnv();
 
       expect(() => env.SERVER_ENV).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client",
+        "❌ Attempted to access a server-side environment variable on the client"
       );
       expect(() => env.PRESET_ENV).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client",
+        "❌ Attempted to access a server-side environment variable on the client"
       );
       expect(env.SHARED_ENV).toBe("shared");
       expect(env.NEXT_PUBLIC_ENV).toBe("client");
