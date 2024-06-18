@@ -1,5 +1,15 @@
 # @nurliman/env-valibot
 
+## 0.6.0
+
+### Minor Changes
+
+- [`14ccb0b`](https://github.com/nurliman/env-valibot/commit/14ccb0b2b2fc356935700132ca18b64e2810825e) Thanks [@nurliman](https://github.com/nurliman)! - Update @valibot/valibot dependency to version 0.31.1
+
+### Patch Changes
+
+- [`bfae789`](https://github.com/nurliman/env-valibot/commit/bfae789f4e41d58fa91bf360a4d46df2ac72b2a8) Thanks [@nurliman](https://github.com/nurliman)! - Update dependencies for Astro, Next.js, Nuxt, and env-valibot packages
+
 ## 0.5.4
 
 ### Patch Changes
