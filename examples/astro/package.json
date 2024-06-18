@@ -9,13 +9,13 @@
     "start": "astro dev"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^4.2.0",
+    "@astrojs/solid-js": "^4.4.0",
     "@nurliman/env-valibot": "workspace:*",
-    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.30.0",
-    "astro": "^4.9.1",
+    "@valibot/valibot": "npm:@jsr/valibot__valibot@0.30.0",
+    "astro": "^4.10.3",
     "solid-js": "^1.8.17"
   },
   "devDependencies": {
-    "vite": "^5.2.11"
+    "vite": "^5.3.1"
   }
 }

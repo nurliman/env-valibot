@@ -60,10 +60,10 @@
     "prepack": "cpy '../../README.md' '../../LICENSE' ."
   },
   "devDependencies": {
-    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.30.0",
+    "@valibot/valibot": "npm:@jsr/valibot__valibot@0.30.0",
     "cpy-cli": "^3",
     "expect-type": "^0.19.0",
-    "tsup": "^8.0.2"
+    "tsup": "^8.1.0"
   },
   "peerDependencies": {
     "@valibot/valibot": "*",

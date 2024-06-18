@@ -1,7 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "experimentalUI": false,
-  "pipeline": {
+  "tasks": {
     "topo": {
       "dependsOn": ["^topo"]
     },
@@ -13,8 +12,12 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", ".nuxt"]
     },
-    "lint": { "cache": false },
-    "lint:fix": { "cache": false },
+    "lint": {
+      "cache": false
+    },
+    "lint:fix": {
+      "cache": false
+    },
     "test": {
       "dependsOn": ["^build"],
       "outputs": []
@@ -23,5 +26,6 @@
       "dependsOn": ["^topo", "^build"],
       "outputs": []
     }
-  }
+  },
+  "ui": "stream"
 }
