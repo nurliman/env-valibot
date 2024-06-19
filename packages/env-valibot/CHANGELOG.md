@@ -1,5 +1,15 @@
 # @nurliman/env-valibot
 
+## 0.6.1
+
+### Patch Changes
+
+- merge upstream
+
+- [`c68d659`](https://github.com/nurliman/env-valibot/commit/c68d6593be5cf21821b024b617c59e8faedc14d5) Thanks [@nurliman](https://github.com/nurliman)! - Update examples in docs
+
+- [`5238a24`](https://github.com/nurliman/env-valibot/commit/5238a243666527975273dfa7e39c981534372d0d) Thanks [@nurliman](https://github.com/nurliman)! - Update @valibot/valibot peer dependency to >=0.31.0
+
 ## 0.6.0
 
 ### Minor Changes
