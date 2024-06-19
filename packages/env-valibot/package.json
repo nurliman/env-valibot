@@ -67,7 +67,7 @@
     "vitest": "^1.6.0"
   },
   "peerDependencies": {
-    "@valibot/valibot": ">=0.31",
+    "@valibot/valibot": ">=0.31.0",
     "typescript": ">=5.0.0"
   },
   "peerDependenciesMeta": {
