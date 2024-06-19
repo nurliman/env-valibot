@@ -20,6 +20,7 @@ export function vercel(): Readonly<{
   VERCEL?: string;
   VERCEL_ENV?: "development" | "preview" | "production";
   VERCEL_URL?: string;
+  VERCEL_PROJECT_PRODUCTION_URL?: string;
   VERCEL_BRANCH_URL?: string;
   VERCEL_REGION?: string;
   VERCEL_AUTOMATION_BYPASS_SECRET?: string;
@@ -42,6 +43,7 @@ export function vercel(): Readonly<{
         vPicklist(["development", "preview", "production"]),
       ),
       VERCEL_URL: vOptional(vString()),
+      VERCEL_PROJECT_PRODUCTION_URL: vOptional(vString()),
       VERCEL_BRANCH_URL: vOptional(vString()),
       VERCEL_REGION: vOptional(vString()),
       VERCEL_AUTOMATION_BYPASS_SECRET: vOptional(vString()),

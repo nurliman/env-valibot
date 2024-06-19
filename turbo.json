@@ -26,6 +26,5 @@
       "dependsOn": ["^topo", "^build"],
       "outputs": []
     }
-  },
-  "ui": "stream"
+  }
 }
