@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.0.18",
     "@nurliman/env-valibot": "workspace:*",
     "@valibot/valibot": "npm:@jsr/valibot__valibot@0.31.1",
     "next": "^14.2.4",

@@ -1,9 +1,6 @@
-import { Inter } from "next/font/google";
-
-import { env } from "~/env";
+import "@fontsource-variable/inter";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { env } from "~/env";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +10,7 @@ export const metadata = {
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <div>Server says {env.SECRET}!</div>
         <main>{props.children}</main>
       </body>
