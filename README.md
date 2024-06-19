@@ -44,8 +44,8 @@ export const env = createNextjsEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
-    DATABASE_URL: v.string([v.url()]),
-    OPEN_AI_API_KEY: v.string([v.minLength(1)]),
+    DATABASE_URL: v.pipe(v.string(), v.url()),
+    OPEN_AI_API_KEY: v.pipe(v.string(), v.minLength(1)),
   },
   /*
    * Environment variables available on the client (and server).
@@ -53,7 +53,7 @@ export const env = createNextjsEnv({
    * 💡 You'll get type errors if these are not prefixed with NEXT_PUBLIC_.
    */
   client: {
-    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: v.string([v.minLength(1)]),
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: v.pipe(v.string(), v.minLength(1)),
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
