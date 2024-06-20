@@ -1,6 +1,6 @@
 {
   "name": "@nurliman/env-valibot-root",
-  "packageManager": "bun@1.1.13",
+  "packageManager": "bun@1.1.15",
   "private": true,
   "type": "module",
   "workspaces": ["examples/*", "packages/*"],
