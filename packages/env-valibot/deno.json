@@ -12,6 +12,6 @@
     "include": ["src/**/*.ts", "deno.json", "package.json"]
   },
   "imports": {
-    "@valibot/valibot": "jsr:@valibot/valibot@^0.33.3"
+    "@valibot/valibot": "jsr:@valibot/valibot@^0.36.0"
   }
 }

@@ -8,10 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "@fontsource-variable/inter": "^5.0.18",
+    "@fontsource-variable/inter": "^5.0.19",
     "@nurliman/env-valibot": "workspace:*",
-    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.33.3",
-    "next": "^14.2.4",
+    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.36.0",
+    "next": "^14.2.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
