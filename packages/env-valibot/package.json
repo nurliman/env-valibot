@@ -53,7 +53,8 @@
     "dev": "tsup --config tsup.config.ts --watch",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
-    "prepack": "cpy '../../README.md' '../../LICENSE' ."
+    "prepack": "cpy '../../README.md' '../../LICENSE' .",
+    "postinstall": "bun run build"
   },
   "devDependencies": {
     "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.42.1",
