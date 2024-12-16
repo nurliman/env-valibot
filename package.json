@@ -1,6 +1,6 @@
 {
   "name": "@nurliman/env-valibot-root",
-  "packageManager": "bun@1.1.18",
+  "packageManager": "bun@1.1.38",
   "private": true,
   "type": "module",
   "workspaces": ["examples/*", "packages/*"],
@@ -17,19 +17,25 @@
     "release": "npm run build && npm run lint:fix && npm run typecheck && npm run test --filter=./packages/* && changeset publish"
   },
   "dependencies": {
-    "@biomejs/biome": "^1.8.3",
+    "@biomejs/biome": "^1.9.4",
     "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.7",
+    "@changesets/cli": "^2.27.10",
     "@manypkg/get-packages": "^2.2.2",
     "fs-extra": "^11.2.0",
-    "turbo": "^2.0.6",
-    "typescript": "^5.5.3"
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "@types/bun": "latest",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20"
+    "@types/node": "^22"
   },
-  "trustedDependencies": ["@biomejs/biome", "esbuild", "sharp"]
+  "trustedDependencies": [
+    "@biomejs/biome",
+    "@examples/nuxt",
+    "@parcel/watcher",
+    "esbuild",
+    "sharp"
+  ]
 }
