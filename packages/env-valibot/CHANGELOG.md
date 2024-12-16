@@ -1,5 +1,21 @@
 # @nurliman/env-valibot
 
+## 0.7.2
+
+### Patch Changes
+
+- [`d3c7eaf`](https://github.com/nurliman/env-valibot/commit/d3c7eaf5b99bea71dba6043bb0a518d54e8cdb61) Thanks [@nurliman](https://github.com/nurliman)! - update nextjs example
+
+- [`e356c61`](https://github.com/nurliman/env-valibot/commit/e356c61ba01071c98b186c185f93ea35269531e8) Thanks [@nurliman](https://github.com/nurliman)! - Refactor imports and improve code consistency
+
+- [`d25ff47`](https://github.com/nurliman/env-valibot/commit/d25ff47fe187715346bbad691b57e4e198fb5c0a) Thanks [@nurliman](https://github.com/nurliman)! - chore: Add postinstall script to build package after installation
+
+- [`12beaa2`](https://github.com/nurliman/env-valibot/commit/12beaa22bdd6e1f051101d0fe4134d8bba7cf029) Thanks [@nurliman](https://github.com/nurliman)! - update dependencies
+
+- [`3a7354c`](https://github.com/nurliman/env-valibot/commit/3a7354c0f6a44d5a0cb07d15c8cea7f48f608d46) Thanks [@nurliman](https://github.com/nurliman)! - update nuxt example
+
+- [`b1f23a6`](https://github.com/nurliman/env-valibot/commit/b1f23a68daa0f2a86ed4875e99532d0224a8213d) Thanks [@nurliman](https://github.com/nurliman)! - update astro example
+
 ## 0.7.1
 
 ### Patch Changes
