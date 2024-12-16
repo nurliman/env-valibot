@@ -1,18 +1,27 @@
 ---
-import { ClientComponent } from "../counter";
 import { env } from "../t3-env";
+import { ClientComponent } from "../Counter";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-		<p>PORT: {env.PORT}</p>
-		<ClientComponent client:only="solid-js" />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <h1>Astro</h1>
+    <p>PORT: {env.PORT}</p>
+    <ClientComponent client:only="solid-js" />
+  </body>
 </html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
