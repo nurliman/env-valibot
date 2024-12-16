@@ -1,6 +1,6 @@
 {
   "name": "@nurliman/env-valibot",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "",
   "type": "module",
   "license": "MIT",
@@ -47,7 +47,11 @@
       "require": "./dist/presets.cjs"
     }
   },
-  "files": ["dist", "package.json", "*.md"],
+  "files": [
+    "dist",
+    "package.json",
+    "*.md"
+  ],
   "scripts": {
     "build": "tsup --config tsup.config.ts",
     "dev": "tsup --config tsup.config.ts --watch",
