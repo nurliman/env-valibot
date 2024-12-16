@@ -1,18 +1,19 @@
 {
   "name": "@examples/nuxt",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
-  },
-  "devDependencies": {
-    "nuxt": "^3.12.3"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nurliman/env-valibot": "workspace:*",
-    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.36.0"
+    "@valibot/valibot": "npm:@jsr/valibot__valibot@^0.42.1",
+    "nuxt": "^3.14.1592",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   }
 }
