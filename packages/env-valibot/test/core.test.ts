@@ -579,7 +579,9 @@ describe("extending presets", () => {
       });
     }
 
-    expectTypeOf(lazyCreateEnv).returns.toEqualTypeOf<
+    // @ts-ignore
+    // Ignoring TS2589: Type instantiation is excessively deep and possibly infinite
+    (expectTypeOf as any)(lazyCreateEnv).returns.toEqualTypeOf<
       Readonly<{
         PRESET_ENV1: "preset";
         PRESET_ENV2: number;
