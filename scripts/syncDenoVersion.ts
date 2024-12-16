@@ -1,6 +1,6 @@
-import fse from "fs-extra";
 import path from "node:path";
 import { getPackages } from "@manypkg/get-packages";
+import fse from "fs-extra";
 
 async function sychronizeVersion(pkgPath = process.cwd()) {
   // get version from package.json

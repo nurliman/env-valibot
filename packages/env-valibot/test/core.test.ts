@@ -1,4 +1,4 @@
-import { expectTypeOf } from "expect-type";
+import { describe, expect, spyOn, test } from "bun:test";
 import {
   boolean as vBoolean,
   flatten as vFlatten,
@@ -8,7 +8,7 @@ import {
   string as vString,
   transform as vTransform,
 } from "@valibot/valibot";
-import { describe, expect, spyOn, test } from "bun:test";
+import { expectTypeOf } from "expect-type";
 import { createEnv } from "../src/core.ts";
 
 function ignoreErrors(cb: () => void) {
@@ -208,7 +208,7 @@ describe("errors when validation fails", () => {
         server: { BAR: vString() },
         client: { FOO_BAR: vString() },
         runtimeEnv: {},
-      })
+      }),
     ).toThrow("Invalid environment variables");
   });
 
@@ -222,7 +222,7 @@ describe("errors when validation fails", () => {
           BAR: "123abc",
           FOO_BAR: "foo",
         },
-      })
+      }),
     ).toThrow("Invalid environment variables");
   });
 
@@ -240,9 +240,9 @@ describe("errors when validation fails", () => {
           const barError = vFlatten(err)?.nested?.BAR?.[0] as string;
           throw new Error(`Invalid variable BAR: ${barError}`);
         },
-      })
+      }),
     ).toThrow(
-      "Invalid variable BAR: Invalid type: Expected number but received NaN"
+      "Invalid variable BAR: Invalid type: Expected number but received NaN",
     );
   });
 });
@@ -261,7 +261,7 @@ describe("errors when server var is accessed on client", () => {
     });
 
     expect(() => env.BAR).toThrow(
-      "❌ Attempted to access a server-side environment variable on the client"
+      "❌ Attempted to access a server-side environment variable on the client",
     );
   });
 
@@ -318,7 +318,7 @@ describe("client/server only mode", () => {
           clientPrefix: "FOO_",
           server: {},
           runtimeEnv: {},
-        }
+        },
       );
     });
   });
@@ -386,7 +386,7 @@ describe("shared can be accessed on both server and client", () => {
     const env = lazyCreateEnv();
 
     expect(() => env.BAR).toThrow(
-      "❌ Attempted to access a server-side environment variable on the client"
+      "❌ Attempted to access a server-side environment variable on the client",
     );
     expect(env.FOO_BAR).toBe("foo");
     expect(env.NODE_ENV).toBe("development");
@@ -527,10 +527,10 @@ describe("extending presets", () => {
       const env = lazyCreateEnv();
 
       expect(() => env.SERVER_ENV).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
       expect(() => env.PRESET_ENV).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
       expect(env.SHARED_ENV).toBe("shared");
       expect(env.CLIENT_ENV).toBe("client");
@@ -613,13 +613,13 @@ describe("extending presets", () => {
       const env = lazyCreateEnv();
 
       expect(() => env.SERVER_ENV).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
       expect(() => env.PRESET_ENV1).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
       expect(() => env.PRESET_ENV2).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
       expect(env.SHARED_ENV).toBe("shared");
       expect(env.CLIENT_ENV).toBe("client");

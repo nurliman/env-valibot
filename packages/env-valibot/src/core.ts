@@ -4,7 +4,7 @@
  * @module
  */
 
-import type { ObjectSchema, InferOutput, BaseIssue } from "@valibot/valibot";
+import type { BaseIssue, InferOutput, ObjectSchema } from "@valibot/valibot";
 import {
   flatten as vFlatten,
   object as vObject,
@@ -29,21 +29,21 @@ type UnReadonlyObject<T> = T extends Readonly<infer U> ? U : T;
 
 type Reduce<
   TArr extends Array<Record<string, unknown>>,
-  TAcc = {}
+  TAcc = {},
 > = TArr extends []
   ? TAcc
   : TArr extends [infer Head, ...infer Tail]
-  ? Tail extends Array<Record<string, unknown>>
-    ? Head & Reduce<Tail, TAcc>
-    : never
-  : never;
+    ? Tail extends Array<Record<string, unknown>>
+      ? Head & Reduce<Tail, TAcc>
+      : never
+    : never;
 
 /**
  * The options that can be passed to the `createEnv` function.
  */
 export interface BaseOptions<
   TShared extends Record<string, AnySchema>,
-  TExtends extends Array<Record<string, unknown>>
+  TExtends extends Array<Record<string, unknown>>,
 > {
   /**
    * How to determine whether the app is running on the server or the client.
@@ -67,7 +67,7 @@ export interface BaseOptions<
    * and an error is thrown telling what environment variables are invalid.
    */
   onValidationError?: (
-    error: [BaseIssue<unknown>, ...BaseIssue<unknown>[]]
+    error: [BaseIssue<unknown>, ...BaseIssue<unknown>[]],
   ) => never;
 
   /**
@@ -105,7 +105,7 @@ export interface BaseOptions<
  */
 export interface LooseOptions<
   TShared extends Record<string, AnySchema>,
-  TExtends extends Array<Record<string, unknown>>
+  TExtends extends Array<Record<string, unknown>>,
 > extends BaseOptions<TShared, TExtends> {
   runtimeEnvStrict?: never;
 
@@ -128,7 +128,7 @@ export interface StrictOptions<
   TServer extends Record<string, AnySchema>,
   TClient extends Record<string, AnySchema>,
   TShared extends Record<string, AnySchema>,
-  TExtends extends Array<Record<string, unknown>>
+  TExtends extends Array<Record<string, unknown>>,
 > extends BaseOptions<TShared, TExtends> {
   /**
    * Runtime Environment variables to use for validation - `process.env`, `import.meta.env` or similar.
@@ -139,15 +139,15 @@ export interface StrictOptions<
         [TKey in keyof TClient]: TPrefix extends undefined
           ? never
           : TKey extends `${TPrefix}${string}`
-          ? TKey
-          : never;
+            ? TKey
+            : never;
       }[keyof TClient]
     | {
         [TKey in keyof TServer]: TPrefix extends undefined
           ? TKey
           : TKey extends `${TPrefix}${string}`
-          ? never
-          : TKey;
+            ? never
+            : TKey;
       }[keyof TServer]
     | {
         [TKey in keyof TShared]: TKey extends string ? TKey : never;
@@ -165,7 +165,7 @@ export interface StrictOptions<
  */
 export interface ClientOptions<
   TPrefix extends string | undefined,
-  TClient extends Record<string, AnySchema>
+  TClient extends Record<string, AnySchema>,
 > {
   /**
    * The prefix that client-side variables must have. This is enforced both at
@@ -192,7 +192,7 @@ export interface ClientOptions<
  */
 export interface ServerOptions<
   TPrefix extends string | undefined,
-  TServer extends Record<string, AnySchema>
+  TServer extends Record<string, AnySchema>,
 > {
   /**
    * Specify your server-side environment variables schema here. This way you can ensure the app isn't
@@ -202,19 +202,19 @@ export interface ServerOptions<
     [TKey in keyof TServer]: TPrefix extends undefined
       ? TServer[TKey]
       : TPrefix extends ""
-      ? TServer[TKey]
-      : TKey extends `${TPrefix}${string}`
-      ? ErrorMessage<`${TKey extends `${TPrefix}${string}`
-          ? TKey
-          : never} should not prefixed with ${TPrefix}.`>
-      : TServer[TKey];
+        ? TServer[TKey]
+        : TKey extends `${TPrefix}${string}`
+          ? ErrorMessage<`${TKey extends `${TPrefix}${string}`
+              ? TKey
+              : never} should not prefixed with ${TPrefix}.`>
+          : TServer[TKey];
   }>;
 }
 
 export type ServerClientOptions<
   TPrefix extends string | undefined,
   TServer extends Record<string, AnySchema>,
-  TClient extends Record<string, AnySchema>
+  TClient extends Record<string, AnySchema>,
 > =
   | (ClientOptions<TPrefix, TClient> & ServerOptions<TPrefix, TServer>)
   | (ServerOptions<TPrefix, TServer> & Impossible<ClientOptions<never, never>>)
@@ -225,7 +225,7 @@ export type EnvOptions<
   TServer extends Record<string, AnySchema>,
   TClient extends Record<string, AnySchema>,
   TShared extends Record<string, AnySchema>,
-  TExtends extends Array<Record<string, unknown>>
+  TExtends extends Array<Record<string, unknown>>,
 > =
   | (LooseOptions<TShared, TExtends> &
       ServerClientOptions<TPrefix, TServer, TClient>)
@@ -245,7 +245,7 @@ export type CreateEnv<
   TServer extends TServerFormat,
   TClient extends TClientFormat,
   TShared extends TSharedFormat,
-  TExtends extends TExtendsFormat
+  TExtends extends TExtendsFormat,
 > = Readonly<
   Simplify<
     InferOutput<ObjectSchema<TServer, undefined>> &
@@ -263,9 +263,9 @@ export function createEnv<
   TServer extends TServerFormat = NonNullable<unknown>,
   TClient extends TClientFormat = NonNullable<unknown>,
   TShared extends TSharedFormat = NonNullable<unknown>,
-  const TExtends extends TExtendsFormat = []
+  const TExtends extends TExtendsFormat = [],
 >(
-  opts: EnvOptions<TPrefix, TServer, TClient, TShared, TExtends>
+  opts: EnvOptions<TPrefix, TServer, TClient, TShared, TExtends>,
 ): CreateEnv<TServer, TClient, TShared, TExtends> {
   const runtimeEnv = opts.runtimeEnvStrict ?? opts.runtimeEnv ?? process.env;
 
@@ -309,7 +309,7 @@ export function createEnv<
     ((error) => {
       console.error(
         "❌ Invalid environment variables:",
-        vFlatten(error)?.nested
+        vFlatten(error)?.nested,
       );
       throw new Error("Invalid environment variables");
     });
@@ -318,7 +318,7 @@ export function createEnv<
     opts.onInvalidAccess ??
     ((_variable: string) => {
       throw new Error(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
     });
 

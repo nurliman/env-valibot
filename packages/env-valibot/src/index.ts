@@ -1,8 +1,8 @@
 /**
  * # Typesafe Envs made Simple
- * 
+ *
  * Deploying your app with invalid environment variables is a hassle. This package helps you to avoid that.
- * 
+ *
  * ## Usage
  *
  * > For full documentation, see https://env.t3.gg

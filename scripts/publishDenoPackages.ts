@@ -1,7 +1,7 @@
-import fse from "fs-extra";
 import path from "node:path";
 import { getPackages } from "@manypkg/get-packages";
 import { $ } from "bun";
+import fse from "fs-extra";
 
 async function publishDenoPackage(pkgPath = process.cwd()) {
   // get version from package.json

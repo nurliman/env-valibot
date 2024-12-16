@@ -1,11 +1,11 @@
-import { expectTypeOf } from "expect-type";
+import { describe, expect, spyOn, test } from "bun:test";
 import {
   picklist as vPicklist,
   pipe as vPipe,
   string as vString,
   transform as vTransform,
 } from "@valibot/valibot";
-import { describe, expect, spyOn, test } from "bun:test";
+import { expectTypeOf } from "expect-type";
 import { createEnv } from "../src/nextjs.ts";
 
 function ignoreErrors(cb: () => void) {
@@ -317,10 +317,10 @@ describe("extending presets", () => {
       const env = lazyCreateEnv();
 
       expect(() => env.SERVER_ENV).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
       expect(() => env.PRESET_ENV).toThrow(
-        "❌ Attempted to access a server-side environment variable on the client"
+        "❌ Attempted to access a server-side environment variable on the client",
       );
       expect(env.SHARED_ENV).toBe("shared");
       expect(env.NEXT_PUBLIC_ENV).toBe("client");
